@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="24" height="24" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="组件_103_1" data-name="组件 103 – 1" clip-path="url(#clip-path)">
+    <path id="联合_18" data-name="联合 18" d="M16598,17478v-21h21v21h-21Zm15.75-5.25v2.723h2.723v-2.723Zm-13.223,0v2.723H16612v-2.723Zm0-13.223V17471h15.945v-11.473Zm14.2,9.723h-5.252v-1.75h3.5v-4.473h-3.5v-1.75h5.252Zm-12.445,0v-7.973h5.445v1.75h-3.7v4.473h3.7v1.75h-5.445Zm3.5-3.111v-1.75h5.443v1.75Z" transform="translate(-16596.498 -17455.502)" fill="#3b86ff"/>
+    <rect id="矩形_1928" data-name="矩形 1928" width="24" height="24" fill="none"/>
+  </g>
+</svg>

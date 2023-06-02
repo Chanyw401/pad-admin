@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1, .cls-3, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        opacity: 0.1;
+      }
+
+      .cls-4 {
+        fill: #ffffff;
+      }
+
+      .cls-5 {
+        stroke: #ffffff;
+        stroke-width: 2px;
+      }
+
+      .cls-6 {
+        stroke: none;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="生成" class="cls-2">
+    <rect id="矩形_1967" data-name="矩形 1967" class="cls-3" width="24" height="24"/>
+    <g id="组_1432" data-name="组 1432" transform="translate(-6590.5 19821.5)">
+      <rect id="矩形_1968" data-name="矩形 1968" class="cls-4" width="21" height="5" transform="translate(6592 -19804)"/>
+      <g id="矩形_1969" data-name="矩形 1969" class="cls-5" transform="translate(6593 -19820)">
+        <rect class="cls-6" width="19" height="19"/>
+        <rect class="cls-1" x="1" y="1" width="17" height="17"/>
+      </g>
+      <rect id="矩形_1970" data-name="矩形 1970" class="cls-4" width="13" height="2" transform="translate(6596 -19816)"/>
+      <rect id="矩形_1971" data-name="矩形 1971" class="cls-4" width="13" height="2" transform="translate(6596 -19812)"/>
+      <rect id="矩形_1972" data-name="矩形 1972" class="cls-4" width="7" height="2" transform="translate(6596 -19808)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,92 @@
+*{
+  box-sizing: border-box;
+}
+.car-box{
+  width: 790px;
+  height: 1120px;
+  background: #F6F6F4;
+  padding: 62px 72px 28px 72px;
+  border-radius: 0px 0px 0px 0px;
+  margin: 0 auto;
+  position: relative;
+  page-break-inside: avoid;
+}
+.car-header1{
+  position: relative;
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  .left{
+    .title{
+      font-size: 38px;
+      font-weight: 400;
+      color: #1C2431;
+    }
+    .title-en {
+      font-size: 16px;
+      font-weight: 400;
+      color: #6F7F9F;
+    }
+  }
+  .right{
+    text-align: right;
+    .NO{
+      font-size: 14px;
+      font-weight: bold;
+      color: #1C2431;
+    }
+    .date{
+      color: rgba(111, 127, 159, 1);
+      font-size: 14px;
+    }
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -25px;
+    width: 100%;
+    height: 14px;
+    background: url("../../assets/img/car-pdf/header1-bg.png") no-repeat;
+    background-size: cover;
+  }
+
+}
+.footer-box{
+  position: absolute;
+  bottom: 28px;
+  width: 620px;
+  img{
+    width: 100%;
+  }
+  .footer-text{
+    width: 100%;
+    text-align: center;
+  }
+}
+.indicator-box{
+  height: 150px;
+  text-align: center;
+  line-height: 150px;
+}
+.state-btn{
+  width: 66px;
+  height: 24px;
+  background: #254A96;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  &:before{
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    left: 0;
+    right: 0;
+  }
+}

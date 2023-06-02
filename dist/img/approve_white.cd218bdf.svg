@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #ffffff;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="完成_审批" data-name="完成/审批" class="cls-2">
+    <path id="联合_16" data-name="联合 16" class="cls-3" d="M21934,17350h-21v-21h3.818v2.227h-1.59v16.545h16.543v-16.545h-1.592V17329H21934v21Zm-13.486-7.4-3.375-3.373,1.576-1.576,3.375,3.375,6.3-6.3,1.576,1.576-7.875,7.871Zm-.512-11.375V17329h7v2.227Z" transform="translate(-21911.504 -17327.496)"/>
+    <rect id="矩形_1913" data-name="矩形 1913" class="cls-1" width="24" height="24"/>
+  </g>
+</svg>

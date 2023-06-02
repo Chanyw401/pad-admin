@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #f0f0f7;
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        opacity: 0.5;
+      }
+
+      .cls-5 {
+        fill: #3b86ff;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="撤回-小" transform="translate(-1507 -291)">
+    <rect id="矩形_1899" data-name="矩形 1899" class="cls-2" width="32" height="32" transform="translate(1507 291)"/>
+    <g id="撤回_1" data-name="撤回 – 1" class="cls-3" transform="translate(1511 295)">
+      <rect id="矩形_1885" data-name="矩形 1885" class="cls-4" width="24" height="24"/>
+      <path id="路径_1557" data-name="路径 1557" class="cls-5" d="M177.214,200.533l1.853,1.853-2.224,2.224h8.647a6.176,6.176,0,0,1,0,12.353H174.373v-2.471h11.118a3.706,3.706,0,1,0,0-7.412H170.667l6.547-6.547Z" transform="translate(-169.167 -196.533)"/>
+    </g>
+  </g>
+</svg>
