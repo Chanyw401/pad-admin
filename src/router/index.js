@@ -68,6 +68,24 @@ export const indexRouter = [
           // userType: [0, 1]
         }
       },
+      {
+        path: 'user-manage',
+        component: () => import('@/views/admin/usermanage.vue'),
+        name: 'UserManage',
+        meta: {
+          title: '用户管理',
+          icon: 'icon-user'
+        }
+      },
+      {
+        path: 'portal-manage',
+        component: () => import('@/views/admin/portalManage.vue'),
+        name: 'portalManage',
+        meta: {
+          title: '门户管理',
+          icon: 'icon-user'
+        }
+      }
     ]
   }
 ]
