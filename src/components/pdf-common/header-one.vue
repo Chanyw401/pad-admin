@@ -18,10 +18,13 @@ export default {
     data:{
       type:Object,
       default:()=>{
-        name:'您的结果总览';
-        nameEn:'OVERVIEW OF YOUR RESULT'
-        NO:'NO：BG202304172012';
-        date:'报告生成：2023-04-17';
+        return {
+          name:'姓名',
+          nameEn:'Name',
+          No:'编号',
+          date:''
+        }
+
       }
     }
   }

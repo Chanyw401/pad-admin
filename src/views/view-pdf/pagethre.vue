@@ -30,15 +30,15 @@
 
 <script>
 import HeaderTow from "@/components/pdf-common/header-tow.vue";
-import HeaderOne from "@/components/pdf-common/header-one.vue";
-import InstrumentPanel from "@/components/Echart/instrument-panel.vue";
+// import HeaderOne from "@/components/pdf-common/header-one.vue";
+// import InstrumentPanel from "@/components/Echart/instrument-panel.vue";
 import ProductionBeat from "@/components/common/production-beat.vue";
 import ProgressBox from "@/components/common/progress-box.vue";
 import FooterBox from "@/components/pdf-common/footer-box.vue";
 
 
 export default {
-  components: {FooterBox, ProgressBox, ProductionBeat, InstrumentPanel, HeaderOne, HeaderTow},
+  components: {FooterBox, ProgressBox, ProductionBeat, HeaderTow},
   name:'pageThre',
   data() {
     return {

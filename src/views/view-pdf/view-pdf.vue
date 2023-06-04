@@ -1,5 +1,6 @@
 <template>
   <div>
+      <page0/>
     <page-one />
     <page-two />
     <page-thre />
@@ -8,62 +9,14 @@
     <page6 />
     <page7 />
 
-    <!--    <div class="car-box">-->
-    <!--      <header-one :data="{name:'您的结果总览',nameEn:'OVERVIEW OF YOUR RESULT',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}" />-->
-    <!--      <div class="car-content1">-->
-    <!--        <div class="left">-->
-    <!--          <div class="left-item" >菌群健康: <span>13分</span></div>-->
-    <!--          <div class="left-item" >疾病管理: <span style="color: #254A96">18分</span></div>-->
-    <!--          <div class="left-item" >营养评估: <span style="color: #254A96">19分</span></div>-->
-    <!--        </div>-->
-    <!--        <div class="right">-->
-    <!--          <div class="right-titlt">健康总分</div>-->
-    <!--          <div class="echart-box">-->
-    <!--            <instrument-panel/>-->
-    <!--          </div>-->
-    <!--        </div>-->
+      <page22/>
+      <page23/>
+      <page24/>
+      <page21/>
+      <page29/>
+      <page30/>
 
-    <!--      </div>-->
 
-    <!--      <header-tow :data="{name:'肠道菌群总体状况',nameEn:'OVERALL STATUS OF GUTMICROBIOTA'}"></header-tow>-->
-    <!--      <div class="car-content2">-->
-    <!--        <div class="car-content2-header">-->
-    <!--          <div class="left">肠道预测年龄：</div>-->
-    <!--          <div>64.72岁 </div>-->
-    <!--          <div class="right">肠型：</div>-->
-    <!--          <div>拟杆菌型</div>-->
-    <!--        </div>-->
-    <!--        <div class="content">-->
-    <!--          <div class="left">-->
-    <!--           <div>-->
-    <!--             <div class="item">-->
-    <!--               检测到菌种数量：<span>  1000</span> <span  class="btn btn-warning">注意</span>-->
-    <!--             </div>-->
-    <!--             <div class="item">-->
-    <!--               检测到菌种数量：<span>  1000</span> <span class="btn btn-success">注意</span>-->
-    <!--             </div>-->
-    <!--           </div>-->
-    <!--          </div>-->
-    <!--          <div class="right"></div>-->
-    <!--        </div>-->
-
-    <!--      </div>-->
-    <!--      <header-tow :data="{name:'肠道菌群类型及分散图',nameEn:'TYPE OF OUT MICROBIOTA  '}"></header-tow>-->
-    <!--      <div class="car-content3">-->
-    <!--        <production-beat />-->
-
-    <!--      </div>-->
-
-    <!--    <div class="footer-box">-->
-    <!--      <div>-->
-    <!--        <img src="@/assets/img/car-pdf/footer-bg.svg" alt="">-->
-    <!--      </div>-->
-    <!--      <div class="footer-text">-->
-    <!--        01-->
-    <!--      </div>-->
-
-    <!--    </div>-->
-    <!--    </div>-->
   </div>
 </template>
 
@@ -75,9 +28,23 @@ import Page4 from "@/views/view-pdf/page4.vue";
 import Page5 from "@/views/view-pdf/page5.vue";
 import Page6 from "@/views/view-pdf/page6.vue";
 import Page7 from "@/views/view-pdf/page7.vue";
+import Page22 from "@/views/view-pdf/page22.vue";
+import page23 from "@/views/view-pdf/page23.vue";
+import Page24 from "@/views/view-pdf/page24.vue";
+import Page0 from "@/views/view-pdf/page0.vue";
+import Page21 from "@/views/view-pdf/page21.vue";
+import page29 from "@/views/view-pdf/page29.vue";
+import Page30 from "@/views/view-pdf/page30.vue";
 
 export default {
   components: {
+      Page30,
+      page29,
+      Page21,
+      Page0,
+      Page24,
+      page23,
+      Page22,
     Page7,
     Page6,
     Page5,

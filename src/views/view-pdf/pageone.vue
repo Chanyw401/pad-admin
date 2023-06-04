@@ -48,7 +48,7 @@
       </div>
       <header-tow :data="{name:'肠道菌群类型及分散图',nameEn:'TYPE OF OUT MICROBIOTA  '}"></header-tow>
       <div class="car-content3">
-        <production-beat />
+          <production-beat />
 
       </div>
   <footer-box :data="'01'"/>
