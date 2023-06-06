@@ -9,6 +9,7 @@ import 'nos-ui/lib/nos-ui.css'
 import 'nos-ui/theme/index.css';
 import 'nos-ui/src/assets/css/common.scss'
 import '@/assets/scss/index.scss'
+import '@/assets/fonts/fonts.css'
 // import NosAuthority from 'nos-authority'
 import '../public/iconfont/iconfont.css'
 import tool from './utils/NB.js';

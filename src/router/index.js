@@ -41,8 +41,8 @@ export const constantRoutes = [
     }
   },
   {
-    path: "/view-pdf",
-    name: "ViewPdf",
+    path: "/pdf",
+    name: "Pdf",
     component: () => import("@/views/view-pdf/view-pdf.vue"),
     meta: {
       title: "PDF",
