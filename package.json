@@ -13,7 +13,7 @@
     "core-js": "^3.6.4",
     "css-loader": "^4.2.2",
     "echarts": "^5.4.2",
-    "echarts-gl": "^1.1.0",
+    "echarts-gl": "^2.0.9",
     "element-ui": "^2.13.1",
     "nos-ui": "^1.1.23",
     "qiniu-js": "^3.1.2",

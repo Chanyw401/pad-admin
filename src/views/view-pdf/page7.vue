@@ -29,7 +29,7 @@
       <header-tow :data="{name:'检测结果',nameEn:'DETECTION RESULT'}" />
       <div class="content2-box">
         <div class="left">
-<!--          <PieContainerChart :dataList="[20,30]"/>-->
+          <PieContainerChart :dataList="[20,30]"/>
         </div>
         <div class="right">
           <img src="../../assets/img/bacteria-bg.png" class="bacteria-bg" alt="">
@@ -89,10 +89,10 @@ import HeaderOne from "@/components/pdf-common/header-one.vue";
 // import InstrumentPanel from "@/components/Echart/instrument-panel.vue";
 // import ProductionBeat from "@/components/common/production-beat.vue";
 import FooterBox from "@/components/pdf-common/footer-box.vue";
-// import PieContainerChart from "@/components/Echart/pieContainerChart.vue";
+import PieContainerChart from "@/components/Echart/pieContainerChart.vue";
 
 export default {
-  components: { FooterBox, HeaderOne, HeaderTow},
+  components: { FooterBox, HeaderOne, HeaderTow,PieContainerChart},
   name:'page7',
   data() {
     return {

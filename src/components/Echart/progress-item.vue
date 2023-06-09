@@ -52,7 +52,7 @@ export default {
 <style scoped lang="scss">
 .progress-item {
   display: flex;
-  height: 45px;
+  height: 50px;
   align-items: center;
   .item-text {
     width: 150px;
@@ -102,26 +102,19 @@ export default {
       }
       .popover{
         position: absolute;
-        width: 25px;
-        height: 20px;
+        width: 35px;
+        height: 25px;
         line-height: 20px;
         text-align: center;
         background: #1C2431;
         border-radius: 4px 4px 4px 4px;
         top: -28px;
-        right: -9px;
+        right: -13px;
         color: #ffffff;
         font-size: 14px;
         font-weight: 300;
-        &:after{
-          position: absolute;
-          content: '';
-          width: 7px;
-          height: 5px;
-          background: #1C2431;
-          top: -28px;
-          right: -9px;
-        }
+        background: url("../../assets/img/car-pdf/popover-bg.png") no-repeat;
+        background-size: contain;
       }
     }
   }
