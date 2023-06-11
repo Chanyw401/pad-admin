@@ -27,18 +27,30 @@
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
-                        <div style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 15%;text-align: center ">{{item.value}}</div>
-                        <div style="width: 15%;text-align: center ">
-                            {{item.state == 0 ?'-': item.state ==1? '↓' : '↑'}}
-                        </div>
-                        <div style="width: 30%;text-align:center;">
-                            {{item.value2}}
-                        </div>
-                    </div>
-                </div>
+                        <div  style="width: 8%;text-align: center;padding-left: 30px"><div >我是个菌群名称</div></div>
+                        <div  style="width: 8%;text-align: center;padding-left: 30px"><div >结果</div></div>
+                        <div  style="width: 8%;text-align: center;padding-left: 30px"><div >正常范围</div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div ></div></div>
+                        <div  style="width: 4%;text-align: center;padding-left: 30px"><div></div></div>
+
 
             </div>
+        </div>
+    </div>
             <footer-box :data="'27'"/>
         </div>
 
@@ -115,6 +127,8 @@ export default {
     margin: 10px 0;
     border-radius: 4px;
     div{
+        border-bottom: 1px solid #ffffff;
+        border-right: 1px solid #ffffff;
     }
   }
   .item:nth-child(2n){
