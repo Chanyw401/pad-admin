@@ -489,7 +489,7 @@ export default {
                 lineStyle: {
                     normal: {
                         opacity: 0.4,
-                        color: "source",
+                        color: '#ACACC1',
                         curveness: 0.5
                     }
                 },
