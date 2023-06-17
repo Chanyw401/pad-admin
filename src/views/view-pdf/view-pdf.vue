@@ -15,7 +15,8 @@
       <page21/>
       <page29/>
       <page30/>
-      <page27/>
+<!--      <page27/>-->
+      <page28/>
 
 
 
@@ -37,11 +38,13 @@ import Page0 from "@/views/view-pdf/page0.vue";
 import Page21 from "@/views/view-pdf/page21.vue";
 import page29 from "@/views/view-pdf/page29.vue";
 import Page30 from "@/views/view-pdf/page30.vue";
-import Page27 from "@/views/view-pdf/page27.vue";
+// import Page27 from "@/views/view-pdf/page27.vue";
+import page28 from "@/views/view-pdf/page28.vue";
 
 export default {
   components: {
-      Page27,
+      page28,
+      // Page27,
       Page30,
       page29,
       Page21,
