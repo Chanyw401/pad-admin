@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="car-box">
-      <header-one :data="{name:'抗生素风险分析',nameEn:'OVERVIEW OF YOUR RESULT',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}" />
+      <header-one :data="{name:'抗生素风险分析',nameEn:'Antibiotic risk analysis',No:'',date:''}" />
 
       <div class="indicator-box"
        >
@@ -31,79 +31,60 @@ export default {
   name:'page6',
   data() {
     return {
+
+
+
+
+
+
+
+
+
       listInfo:[
         {
-          name:'肠道菌群血清素合成能力',
+          name:'β-内酰胺酶类',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'氨基糖苷类',
           num:31,
           type:1
         },
         {
-          name:'有益菌',
+          name:'大环内酯类',
           num:40,
           type:1
         },  {
-          name:'菌群平衡',
+          name:'呋喃类',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'喹诺酮类',
           num:31,
           type:1
         },
         {
-          name:'有益菌',
+          name:'磺胺类',
           num:40,
           type:1
         }, {
-          name:'菌群平衡',
+          name:'甲氧苄啶类',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'氯霉素类',
           num:31,
           type:1
         },
         {
-          name:'菌群平衡',
+          name:'四环素类',
           num:50,
           type:1
         },
-        {
-          name:'菌群平衡',
-          num:50,
-          type:1
-        },
-        {
-          name:'菌群多样性',
-          num:31,
-          type:1
-        },
-        {
-          name:'有益菌',
-          num:40,
-          type:1
-        },  {
-          name:'菌群平衡',
-          num:50,
-          type:1
-        },
-        {
-          name:'菌群多样性',
-          num:31,
-          type:1
-        },
-        {
-          name:'有益菌',
-          num:40,
-          type:1
-        },
+
       ],
 
 

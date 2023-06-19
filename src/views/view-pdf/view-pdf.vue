@@ -1,22 +1,61 @@
 <template>
   <div>
+      <page-instructions/>
       <page0/>
     <page-one />
     <page-two />
     <page-thre />
-    <page4 />
-    <page5 />
-    <page6 />
-    <page7 />
-
+      <page6 />
+      <page07/>
+      <Page08/>
+      <page09/>
+      <page10/>
+      <page11/>
+      <page12/>
+      <page13/>
+      <page14/>
+      <page15/>
+      <page16/>
+      <page17/>
+      <page18/>
+      <page19/>
+      <page20/>
+      <page21/>
       <page22/>
       <page23/>
       <page24/>
-      <page21/>
+      <page25/>
+      <page26/>
+      <page27/>
+      <page28/>
       <page29/>
       <page30/>
-<!--      <page27/>-->
-      <page28/>
+      <page31/>
+      <page32/>
+      <page33/>
+      <page34/>
+      <page35/>
+      <page36/>
+      <page37/>
+      <page38/>
+      <page39/>
+      <page40/>
+      <page41/>
+      <page42/>
+      <page43/>
+      <page44/>
+      <page45/>
+
+    <page4 />
+    <page5 />
+    <page7 />
+
+      <page022/>
+      <page023/>
+      <page024/>
+      <page021/>
+      <page030/>
+      <page028/>
 
 
 
@@ -24,33 +63,109 @@
 </template>
 
 <script>
-import PageOne from "@/views/view-pdf/pageone.vue";
-import PageTwo from "@/views/view-pdf/page-two.vue";
-import PageThre from "@/views/view-pdf/pagethre.vue";
+import PageOne from "@/views/view-pdf/page-03.vue";
+import PageTwo from "@/views/view-pdf/page-04.vue";
+import PageThre from "@/views/view-pdf/page-05.vue";
 import Page4 from "@/views/view-pdf/page4.vue";
 import Page5 from "@/views/view-pdf/page5.vue";
-import Page6 from "@/views/view-pdf/page6.vue";
+import Page6 from "@/views/view-pdf/page-06.vue";
 import Page7 from "@/views/view-pdf/page7.vue";
-import Page22 from "@/views/view-pdf/page22.vue";
-import page23 from "@/views/view-pdf/page23.vue";
-import Page24 from "@/views/view-pdf/page24.vue";
-import Page0 from "@/views/view-pdf/page0.vue";
-import Page21 from "@/views/view-pdf/page21.vue";
-import page29 from "@/views/view-pdf/page29.vue";
-import Page30 from "@/views/view-pdf/page30.vue";
-// import Page27 from "@/views/view-pdf/page27.vue";
-import page28 from "@/views/view-pdf/page28.vue";
+import Page22 from "@/views/view-pdf/page-22.vue";
+import page023 from "@/views/view-pdf/page23.vue";
+import page024 from "@/views/view-pdf/page24.vue";
+import Page0 from "@/views/view-pdf/page-02.vue";
+import Page021 from "@/views/view-pdf/page21.vue";
+import page10 from "@/views/view-pdf/page-10.vue";
+import page030 from "@/views/view-pdf/page30.vue";
+import Page08 from "@/views/view-pdf/page-08.vue";
+import page028 from "@/views/view-pdf/page28.vue";
+import PageInstructions from "@/views/view-pdf/page-01.vue";
+import Page07 from "@/views/view-pdf/page-07.vue";
+import Page09 from "@/views/view-pdf/page-09.vue";
+import Page11 from "@/views/view-pdf/page-11.vue";
+import Page12 from "@/views/view-pdf/page-12.vue";
+import Page13 from "@/views/view-pdf/page-13.vue";
+import Page14 from "@/views/view-pdf/page-14.vue";
+import Page15 from "@/views/view-pdf/page-15.vue";
+import Page16 from "@/views/view-pdf/page-16.vue";
+import Page17 from "@/views/view-pdf/page-17.vue";
+import Page18 from "@/views/view-pdf/page-18.vue";
+import Page19 from "@/views/view-pdf/page-19.vue";
+import Page20 from "@/views/view-pdf/page-20.vue";
+import Page21 from "@/views/view-pdf/page-21.vue";
+import page022 from "@/views/view-pdf/page22.vue";
+import Page23 from "@/views/view-pdf/page-23.vue";
+import Page24 from "@/views/view-pdf/page-24.vue";
+import Page25 from "@/views/view-pdf/page-25.vue";
+import Page26 from "@/views/view-pdf/page-26.vue";
+import Page27 from "@/views/view-pdf/page-27.vue";
+import page29 from "@/views/view-pdf/page-29.vue";
+import page28 from "@/views/view-pdf/page-28.vue";
+import page30 from "@/views/view-pdf/page-30.vue";
+import Page31 from "@/views/view-pdf/page-31.vue";
+import Page32 from "@/views/view-pdf/page-32.vue";
+import Page33 from "@/views/view-pdf/page-33.vue";
+import Page34 from "@/views/view-pdf/page-34.vue";
+import Page35 from "@/views/view-pdf/page-35.vue";
+import Page36 from "@/views/view-pdf/page-36.vue";
+import Page37 from "@/views/view-pdf/page-37.vue";
+import Page38 from "@/views/view-pdf/page-38.vue";
+import Page39 from "@/views/view-pdf/page-39.vue";
+import Page40 from "@/views/view-pdf/page-40.vue";
+import Page41 from "@/views/view-pdf/page-41.vue";
+import Page42 from "@/views/view-pdf/page-42.vue";
+import Page43 from "@/views/view-pdf/page-43.vue";
+import Page44 from "@/views/view-pdf/page-44.vue";
+import Page45 from "@/views/view-pdf/page-45.vue";
 
 export default {
   components: {
-      page28,
-      // Page27,
-      Page30,
+      Page45,
+      Page44,
+      Page43,
+      Page42,
+      Page41,
+      Page40,
+      Page39,
+      Page38,
+      Page37,
+      Page36,
+      Page35,
+      Page34,
+      Page33,
+      Page32,
+      Page31,
       page29,
-      Page21,
-      Page0,
+      page28,
+      page30,
+      Page27,
+      Page26,
+      Page25,
       Page24,
-      page23,
+      Page23,
+      page022,
+      Page21,
+      Page20,
+      Page19,
+      Page18,
+      Page17,
+      Page16,
+      Page15,
+      Page14,
+      Page13,
+      Page12,
+      Page11,
+      Page09,
+      Page07,
+      PageInstructions,
+      page028,
+      Page08,
+      page030,
+      page10,
+      Page021,
+      Page0,
+      page024,
+      page023,
       Page22,
     Page7,
     Page6,

@@ -17,12 +17,12 @@
 
       </div>
 
-      <header-tow :data="{name:'睡眠压力及精神状态评估',nameEn:'SLEEP STRESS AND MENTAL STATE ASSSESSMENT'}"></header-tow>
+      <header-tow :data="{name:'主要消化道致病菌',nameEn:'Major digestive tract pathogens'}"></header-tow>
 <!--      <production-beat :data="listInfo3" />-->
     <progress-box :data="listInfo3"/>
 
 
-      <footer-box :data="'03'"/>
+      <footer-box :data="'05'"/>
     </div>
 
   </div>
@@ -44,50 +44,51 @@ export default {
     return {
       listInfo:[
         {
-          name:'菌群平衡',
+          name:'乙酸',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'丙酸',
           num:31,
           type:1
         },
         {
-          name:'有益菌',
+          name:'丁酸',
           num:40,
           type:1
         },
       ],
       listInfo2:[
         {
-          name:'菌群平衡',
+          name:'肠道菌群血清素合成能力',
           num:50,
           type:1
         },
       ],
+
       listInfo3:[
         {
-          name:'菌群平衡',
+          name:'幽门螺旋杆菌',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'艰难梭菌',
           num:31,
           type:1
         },
         {
-          name:'有益菌',
+          name:'沙门氏菌',
           num:40,
           type:1
         }, {
-          name:'菌群平衡',
+          name:'志贺氏菌',
           num:50,
           type:1
         },
         {
-          name:'菌群多样性',
+          name:'弯曲杆菌',
           num:31,
           type:1
         },

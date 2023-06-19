@@ -78,7 +78,7 @@ export const indexRouter = [
         }
       },
       {
-        path: 'portal-manage',
+        path: 'report -manage',
         component: () => import('@/views/admin/portalManage.vue'),
         name: 'portalManage',
         meta: {

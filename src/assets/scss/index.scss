@@ -49,3 +49,32 @@
     right: 0;
   }
 }
+.header-three {
+  color: #1A356B;
+  font-size: 24px;
+  font-family: Fotor HelloFont GongYiTi-Regular, Fotor HelloFont GongYiTi;
+  letter-spacing: 4px;
+  padding-bottom: 10px;
+
+}
+
+.header-point{
+  font-size: 24px;
+  font-weight: 400;
+  color: #1A356B;
+  line-height: 19px;
+  letter-spacing: 1px;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 10px;
+  &:before{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2E5CBB;
+    left: 0;
+    top: 50%;
+  }
+}

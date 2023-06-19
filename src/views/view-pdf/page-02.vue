@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="car-box">
-            <header-one :data="{name:'您的结果总览',nameEn:'Overview of your results',No:'NO：BG202304172012',date:''}"/>
+            <header-one :data="{name:'您的检测报告总览',nameEn:'Overview of your test report',No:'NO：BG202304172012',date:''}"/>
             <div class="content-box">
                 <div class="content-header">基本信息</div>
                 <div class="content">
@@ -58,7 +58,7 @@
             </div>
 
 
-            <footer-box :data="'01'"/>
+            <footer-box :data="'02'"/>
         </div>
 
     </div>
@@ -138,7 +138,6 @@ export default {
   .content-header {
     color: #1A356B;
     font-size: 24px;
-
     font-family: Fotor HelloFont GongYiTi-Regular, Fotor HelloFont GongYiTi;
     letter-spacing: 4px;
     padding-bottom: 10px;

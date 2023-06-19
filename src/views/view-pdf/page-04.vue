@@ -14,7 +14,7 @@
       </div>
 
 
-      <footer-box :data="'02'"/>
+      <footer-box :data="'04'"/>
     </div>
 
   </div>
@@ -32,83 +32,99 @@ export default {
   name:'pageTwo',
   data() {
     return {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      listInfo:[
        {
-         name:'菌群平衡',
+         name:'结直肠癌',
          num:50,
          type:1
        },
        {
-         name:'菌群多样性',
+         name:'炎症性肠病',
          num:31,
          type:1
        },
        {
-         name:'有益菌',
+         name:'肠易激综合征',
          num:40,
          type:1
        },
        {
-         name:'有害菌',
+         name:'感染型腹泻',
          num:50,
          type:1
        },
        {
-         name:'菌群平衡',
+         name:'胃病',
          num:50,
          type:1
        },
        {
-         name:'菌群多样性',
+         name:'胆病',
          num:31,
          type:1
        },
        {
-         name:'有益菌',
+         name:'肝病',
          num:40,
          type:1
        },
        {
-         name:'有害菌',
+         name:'心脑血管疾病',
          num:50,
          type:1
        },
        {
-         name:'菌群平衡',
+         name:'II型糖尿病',
          num:50,
          type:1
        },
        {
-         name:'菌群多样性',
+         name:'甲状腺疾病',
          num:31,
          type:1
        },
        {
-         name:'有益菌',
+         name:'肺部疾病',
          num:40,
          type:1
        },
        {
-         name:'有害菌',
+         name:'抑郁症',
          num:50,
          type:1
        },  {
-         name:'菌群平衡',
+         name:'自闭症',
          num:50,
          type:1
        },
        {
-         name:'菌群多样性',
+         name:'肾病',
          num:31,
          type:1
        },
        {
-         name:'有益菌',
+         name:'自体免疫疾病',
          num:40,
          type:1
        },
        {
-         name:'有害菌',
+         name:'认知障碍（老年痴呆预兆)',
          num:50,
          type:1
        }

@@ -48,10 +48,10 @@
       </div>
       <header-tow :data="{name:'肠道菌群类型及分散图',nameEn:'TYPE OF OUT MICROBIOTA  '}"></header-tow>
       <div class="car-content3">
-          <production-beat />
+          <production-beat :data="tableObj.list" />
 
       </div>
-  <footer-box :data="'01'"/>
+  <footer-box :data="'03'"/>
     </div>
 
   </div>
@@ -83,11 +83,26 @@ export default {
       },
       tableObj:{
         list:[
-          {name:'1',code:'YG001'},
-          {name:'2',code:'YG002'},
-          {name:'3',code:'YG003'},
-          {name:'4',code:'YG004'},
-          {name:'5',code:'YG005'},
+            {
+                name:'肠道菌群平衡',
+                num:31,
+                type:1
+            },
+            {
+                name:'菌群多样性',
+                num:31,
+                type:1
+            },
+            {
+                name:'有益菌',
+                num:31,
+                type:1
+            },  {
+                name:'有害菌',
+                num:31,
+                type:1
+            },
+
         ]
       },
       uploadBox: {

@@ -173,14 +173,14 @@ export default {
       justify-content: space-around;
       .item-btn{
         box-sizing: border-box;
-        width: 144px;
-        height: 48px;
+        width: 163px;
+        height: 64px;
         text-align: center;
-        border: 1px dashed rgba(37, 74, 150, 1);
-        color: rgba(37, 74, 150, 1);
-        background: rgba(37, 74, 150, .1);
-        border-radius: 51px 51px 51px 51px;
-        padding-top: 5px;
+        color: #254a96;
+        background: url("../../assets/img/car-pdf/dash-bg.png") no-repeat;
+        padding-top: 8px;
+        background-size: contain;
+
       }
     }
     .content-foorter{
