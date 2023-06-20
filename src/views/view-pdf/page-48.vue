@@ -1,8 +1,58 @@
 <template>
     <div>
         <div class="car-box">
-            <header-tow :data="{name:'病原菌',nameEn:'Pathogenic bacteria'}" />
-            <div class="header-three" style="margin: 20px 0">检查结果</div>
+            <header-one :data="{name:'您的肠道菌群构造',nameEn:'Your gut microbiota structure',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}" />
+            <div class="content-box">
+                <div class="content-header">门（DOOR）</div>
+                <div class="content">
+                    <div class="content-item">门是细菌最初的分类，肠道菌群最主要的细菌构成是以下三类:</div>
+                    <div class="content-item2">
+                        <div class="item-btn">
+                            <div>厚壁菌门</div>
+                            <div>(Firmicutes)</div>
+                        </div>
+
+                        <div class="item-btn">
+                            <div>厚壁菌门</div>
+                            <div>(Firmicutes)</div>
+                        </div>
+                        <div class="item-btn">
+                            <div>厚壁菌门</div>
+                            <div>(Firmicutes)</div>
+                        </div>
+                    </div>
+                    <div class="content-foorter">
+                        *变形菌门是大部分致病菌所在的门
+                    </div>
+                </div>
+            </div>
+            <header-tow :data="{name:'检测结果',nameEn:'DETECTION RESULT'}" />
+            <div class="content2-box">
+                <div class="left">
+                    <PieContainerChart :dataList="[20,30]"/>
+                </div>
+                <div class="right">
+                    <img src="../../assets/img/bacteria-bg.png" class="bacteria-bg" alt="">
+                    <img src="../../assets/img/bacteria-text-bg.png" class="bacteria-text-bg" alt="">
+                    <div class="right-content">
+                        <div class="right-header">您的主要菌群构成</div>
+                        <div >
+                            <div>
+                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                            </div>
+                            <div>
+                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                            </div>
+                            <div>
+                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                            </div>
+                            <div>
+                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div>
                 <div class="theader">
@@ -27,7 +77,7 @@
 
 
 
-            <footer-box :data="'45'"/>
+            <footer-box :data="'48'"/>
         </div>
 
     </div>
@@ -35,13 +85,15 @@
 
 <script>
 import HeaderTow from "@/components/pdf-common/header-tow.vue";
+import HeaderOne from "@/components/pdf-common/header-one.vue";
 // import InstrumentPanel from "@/components/Echart/instrument-panel.vue";
 // import ProductionBeat from "@/components/common/production-beat.vue";
 import FooterBox from "@/components/pdf-common/footer-box.vue";
+import PieContainerChart from "@/components/Echart/pieContainerChart.vue";
 
 export default {
-    components: { FooterBox,  HeaderTow},
-    name:'page45',
+    components: { FooterBox, HeaderOne, HeaderTow,PieContainerChart},
+    name:'page48',
     data() {
         return {
             tableList:[
@@ -50,21 +102,6 @@ export default {
                 {name:'变形菌门 Proteobacteria',value:'59.545%',value2:45},
                 {name:'放线菌门 Actinobacteria',value:'59.545%',value2:55},
                 {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100},
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:15},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:35},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:45},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:55},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100},
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:15},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:35},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:45},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:55},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:35},
-
-
-
             ]
 
 
@@ -136,14 +173,14 @@ export default {
       justify-content: space-around;
       .item-btn{
         box-sizing: border-box;
-        width: 144px;
-        height: 48px;
+        width: 163px;
+        height: 64px;
         text-align: center;
-        border: 1px dashed rgba(37, 74, 150, 1);
-        color: rgba(37, 74, 150, 1);
-        background: rgba(37, 74, 150, .1);
-        border-radius: 51px 51px 51px 51px;
-        padding-top: 5px;
+        color: #254a96;
+        background: url("../../assets/img/car-pdf/dash-bg.png") no-repeat;
+        padding-top: 8px;
+        background-size: contain;
+
       }
     }
     .content-foorter{

@@ -45,6 +45,17 @@
       <page43/>
       <page44/>
       <page45/>
+      <page46/>
+      <page47/>
+      <page48/>
+      <page49/>
+      <page50/>
+      <page51/>
+      <page52/>
+      <page53/>
+      <page54/>
+      <page55/>
+      <page56/>
 
     <page4 />
     <page5 />
@@ -117,9 +128,31 @@ import Page42 from "@/views/view-pdf/page-42.vue";
 import Page43 from "@/views/view-pdf/page-43.vue";
 import Page44 from "@/views/view-pdf/page-44.vue";
 import Page45 from "@/views/view-pdf/page-45.vue";
+import Page46 from "@/views/view-pdf/page-46.vue";
+import Page47 from "@/views/view-pdf/page-47.vue";
+import Page48 from "@/views/view-pdf/page-48.vue";
+import Page49 from "@/views/view-pdf/page-49.vue";
+import Page50 from "@/views/view-pdf/page-50.vue";
+import Page51 from "@/views/view-pdf/page-51.vue";
+import Page52 from "@/views/view-pdf/page-52.vue";
+import Page53 from "@/views/view-pdf/page-53.vue";
+import Page54 from "@/views/view-pdf/page-54.vue";
+import Page55 from "@/views/view-pdf/page-55.vue";
+import Page56 from "@/views/view-pdf/page-56.vue";
 
 export default {
   components: {
+      Page56,
+      Page55,
+      Page54,
+      Page50,
+      Page51,
+      Page52,
+      Page53,
+      Page49,
+      Page48,
+      Page47,
+      Page46,
       Page45,
       Page44,
       Page43,
