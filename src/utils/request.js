@@ -1,10 +1,10 @@
 import axios from "axios";
-import { MessageBox } from "element-ui";
+// import { MessageBox } from "element-ui";
 import NosUi from 'nos-ui';
 let tool = NosUi.Tool;
 import NB from './NB.js';
 // import store from "../store/index.js";
-import router from "../router";
+// import router from "../router";
 
 const service = axios.create({
   baseURL: NB.getServeUrl(),
@@ -16,13 +16,11 @@ service.interceptors.request.use(
     // console.log(config);
     config.headers = {
       ...config.headers,
-      ...tool.getRequestHeader()
+      ...tool.getRequestHeader(),
     };
     if (!config.formData) {
       config.data = {
-        requestBody: {
           data: config.data || {}
-        }
       };
     }
     if (config.loading) {
@@ -42,6 +40,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
+      console.log(response,'response')
     if (response.config.loading) {
       // Loading.service().close();
       window.loadingInstance.close();
@@ -57,48 +56,41 @@ service.interceptors.response.use(
         });
       }
       return Promise.reject(response.data);
-    } else {
-      if (response.data.responseBody.code != 200) {
-        if (response.data.responseBody.code == '401' || response.data.responseBody.code == '403') {
-          if (!response.config.noShowLogin) {
-            if (parent.layui) {
-              top.location.href = NB.getServeUrl() + "/page/sys/login.html";
-            } else {
-              router.push({
-                path: '/login?redirect=' + encodeURIComponent(router.currentRoute.fullPath)
-              });
-            }
-          } else {
-            tool.msg({
-              type: "error",
-              message: response.data.responseBody.message
-            });
-          }
-        } else if (response.data.responseBody.code == '408') {
-          MessageBox.alert('当前账号异地登录，请重新登录!', '提示', {
-            confirmButtonText: '确定',
-            callback: () => {
-              if (parent.layui) {
-                top.location.href = NB.getServeUrl() + "/page/sys/login.html";
-              } else {
-                router.push({
-                  path: '/login?redirect=' + encodeURIComponent(router.currentRoute.fullPath)
-                });
-              }
-            }
-          });
-        } else {
-          if (!response.config.noTip) {
-            tool.msg({
-              type: "error",
-              message: response.data.responseBody.message
-            });
-          }
-        }
-        return Promise.reject(response.data.responseBody);
-      }
     }
-    let data = response.data.responseBody.data;
+    // else {
+    //   if (response.code != 200) {
+    //     if (response.code == '401' || response.code == '403') {
+    //       if (!response.config.noShowLogin) {
+    //           router.push({
+    //             path: '/login?redirect=' + encodeURIComponent(router.currentRoute.fullPath)
+    //           });
+    //       } else {
+    //         tool.msg({
+    //           type: "error",
+    //           message: response.data.responseBody.message
+    //         });
+    //       }
+    //     } else if (response.data.responseBody.code == '408') {
+    //       MessageBox.alert('当前账号异地登录，请重新登录!', '提示', {
+    //         confirmButtonText: '确定',
+    //         callback: () => {
+    //             router.push({
+    //               path: '/login?redirect=' + encodeURIComponent(router.currentRoute.fullPath)
+    //             });
+    //         }
+    //       });
+    //     } else {
+    //       if (!response.config.noTip) {
+    //         tool.msg({
+    //           type: "error",
+    //           message: response.data.responseBody.message
+    //         });
+    //       }
+    //     }
+    //     return Promise.reject(response.data.responseBody);
+    //   }
+    // }
+    let data = response.data.data;
     tool.dealJSONData(data);
     return data;
   },
@@ -113,7 +105,6 @@ service.interceptors.response.use(
         message: "请求失败！"
       });
     }
-    console.log(error);
     return Promise.reject({ code: 1030, message: '请求失败！' });
   }
 );

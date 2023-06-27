@@ -58,6 +58,7 @@ const actions = {
                 commit('SET_ROLES', '');
                 resolve(res);
             }).catch((error) => {
+                console.log(error)
                 reject(error);
             });
         });

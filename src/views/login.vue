@@ -27,19 +27,19 @@
           <div class="login-info">{{ systemTitle }}</div>
           <el-form-item
             :class="[
-          loginBox.error.loginName ? 'error' : '',
-          loginBox.focus.loginName ? 'focus' : ''
+          loginBox.error.loginStr ? 'error' : '',
+          loginBox.focus.loginStr ? 'focus' : ''
         ]"
-            prop="loginName"
+            prop="loginStr"
           >
             <el-input
               class="login-input"
-              v-model="loginBox.data.loginName"
+              v-model="loginBox.data.loginStr"
               placeholder="账号"
               :validate-event="false"
               :clearable="true"
-              @focus="inputFocus('loginName')"
-              @blur="inputBlur('loginName')"
+              @focus="inputFocus('loginStr')"
+              @blur="inputBlur('loginStr')"
               @keyup.enter.native="login"
             ></el-input>
             <div>
@@ -49,20 +49,20 @@
           </el-form-item>
           <el-form-item
             :class="[
-          loginBox.error.loginPwd ? 'error' : '',
-          loginBox.focus.loginPwd ? 'focus' : ''
+          loginBox.error.passWord ? 'error' : '',
+          loginBox.focus.passWord ? 'focus' : ''
         ]"
-            prop="loginPwd"
+            prop="passWord"
           >
             <el-input
               class="login-input"
-              v-model="loginBox.data.loginPwd"
+              v-model="loginBox.data.passWord"
               placeholder="密码"
               :validate-event="false"
               :show-password="true"
               :clearable="true"
-              @focus="inputFocus('loginPwd')"
-              @blur="inputBlur('loginPwd')"
+              @focus="inputFocus('passWord')"
+              @blur="inputBlur('passWord')"
               @keyup.enter.native="login"
             ></el-input>
             <div>
@@ -94,24 +94,26 @@ export default {
     return {
       loginBox: {
         data: {
-          loginName: '',
-          loginPwd: ''
+            loginStr: '',
+          passWord: '',
+            loginType: 1,
+            "verifiCode": ""
         },
         rules: {
-          loginName: [
+          loginStr: [
             { required: true, message: '请输入账号！' }
           ],
-          loginPwd: [
+          passWord: [
             { required: true, message: '请输入密码！' }
           ]
         },
         focus: {
-          loginName: false,
-          loginPwd: false
+          loginStr: false,
+          passWord: false
         },
         error: {
-          loginName: false,
-          loginPwd: false
+          loginStr: false,
+          passWord: false
         }
       },
       redirect: '',
@@ -126,8 +128,8 @@ export default {
   },
   methods: {
     login() {
-      this.loginBox.error.loginName = false;
-      this.loginBox.error.loginPwd = false;
+      this.loginBox.error.loginStr = false;
+      this.loginBox.error.passWord = false;
       this.$refs.loginBox.validate((valid, field) => {
         if (valid) {
           this.$store.dispatch('user/login', { data: this.loginBox.data, option: { noTip: true } }).then(res => {
@@ -136,6 +138,7 @@ export default {
               path: this.redirect || '/index'
             });
           }).catch((res) => {
+              console.log(res,'res')
             if (res.code == 402) {
               this.authorizeShow = true;
             } else {
@@ -143,8 +146,8 @@ export default {
                 type: 'error',
                 message: res.message
               });
-              this.loginBox.error.loginName = true;
-              this.loginBox.error.loginPwd = true;
+              this.loginBox.error.loginStr = true;
+              this.loginBox.error.passWord = true;
             }
           });
         } else {

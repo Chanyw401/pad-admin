@@ -260,6 +260,13 @@ export default {
       },
     };
   },
+    created() {
+      this.$axios.post('/admin/sample/report',{
+          code:'596908438'
+      }).then(res=>{
+          console.log(res)
+      })
+    }
 };
 </script>
 
