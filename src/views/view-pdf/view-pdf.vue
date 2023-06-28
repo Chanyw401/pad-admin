@@ -56,17 +56,10 @@
       <page54/>
       <page55/>
       <page56/>
+      <page57/>
 
-    <page4 />
-    <page5 />
-    <page7 />
 
-      <page022/>
-      <page023/>
-      <page024/>
-      <page021/>
-      <page030/>
-      <page028/>
+
 
 
 
@@ -77,19 +70,11 @@
 import PageOne from "@/views/view-pdf/page-03.vue";
 import PageTwo from "@/views/view-pdf/page-04.vue";
 import PageThre from "@/views/view-pdf/page-05.vue";
-import Page4 from "@/views/view-pdf/page4.vue";
-import Page5 from "@/views/view-pdf/page5.vue";
 import Page6 from "@/views/view-pdf/page-06.vue";
-import Page7 from "@/views/view-pdf/page7.vue";
 import Page22 from "@/views/view-pdf/page-22.vue";
-import page023 from "@/views/view-pdf/page23.vue";
-import page024 from "@/views/view-pdf/page24.vue";
 import Page0 from "@/views/view-pdf/page-02.vue";
-import Page021 from "@/views/view-pdf/page21.vue";
 import page10 from "@/views/view-pdf/page-10.vue";
-import page030 from "@/views/view-pdf/page30.vue";
 import Page08 from "@/views/view-pdf/page-08.vue";
-import page028 from "@/views/view-pdf/page28.vue";
 import PageInstructions from "@/views/view-pdf/page-01.vue";
 import Page07 from "@/views/view-pdf/page-07.vue";
 import Page09 from "@/views/view-pdf/page-09.vue";
@@ -104,7 +89,6 @@ import Page18 from "@/views/view-pdf/page-18.vue";
 import Page19 from "@/views/view-pdf/page-19.vue";
 import Page20 from "@/views/view-pdf/page-20.vue";
 import Page21 from "@/views/view-pdf/page-21.vue";
-import page022 from "@/views/view-pdf/page22.vue";
 import Page23 from "@/views/view-pdf/page-23.vue";
 import Page24 from "@/views/view-pdf/page-24.vue";
 import Page25 from "@/views/view-pdf/page-25.vue";
@@ -139,9 +123,11 @@ import Page53 from "@/views/view-pdf/page-53.vue";
 import Page54 from "@/views/view-pdf/page-54.vue";
 import Page55 from "@/views/view-pdf/page-55.vue";
 import Page56 from "@/views/view-pdf/page-56.vue";
+import Page57 from "@/views/view-pdf/page-57.vue";
 
 export default {
   components: {
+      Page57,
       Page56,
       Page55,
       Page54,
@@ -176,7 +162,6 @@ export default {
       Page25,
       Page24,
       Page23,
-      page022,
       Page21,
       Page20,
       Page19,
@@ -191,19 +176,11 @@ export default {
       Page09,
       Page07,
       PageInstructions,
-      page028,
       Page08,
-      page030,
       page10,
-      Page021,
       Page0,
-      page024,
-      page023,
       Page22,
-    Page7,
     Page6,
-    Page5,
-    Page4,
     PageThre,
     PageTwo,
     PageOne,

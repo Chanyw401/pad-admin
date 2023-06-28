@@ -36,18 +36,18 @@
                     <img src="../../assets/img/bacteria-text-bg.png" class="bacteria-text-bg" alt="">
                     <div class="right-content">
                         <div class="right-header">您的主要菌群构成</div>
-                        <div >
+                        <div class="li-content" >
                             <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                                <span class="point point-red" ></span > <span class="name">厚壁菌门</span> <span class="btn">59.6%</span>
                             </div>
                             <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                                <span class="point point-2"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-2">59.6%</span>
                             </div>
                             <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                                <span class="point point-3"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>
                             </div>
                             <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
+                                <span class="point point-4"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@ export default {
 .content2-box{
   display: flex;
   width: 100%;
-  height: 250px;
+  height: 280px;
   align-items: center;
   .left{
     width: 50%;
@@ -207,10 +207,63 @@ export default {
     position: relative;
     width: 50%;
     height: 100%;
-    background: #e1e4ea;
+    //background: #e1e4ea;
     border-radius: 0 6px 6px 0;
     .right-content{
+        padding-top: 40px;
+        padding-right: 40px;
       text-align: right;
+        .li-content{
+            div{
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+        .point{
+          width: 10px;
+          height: 10px;
+          background: #2E5CBB;
+          border-radius: 50%;
+          display: inline-block;
+          margin-right: 3px;
+        }
+        .point-red{
+            background: #CA3E54;
+        }
+        .point-2{
+            background: #475276;
+        }
+        .point-3{
+            background: #8989A3;
+        }
+        .point-4{
+            background: #ACACC1;
+        }
+        .name {
+            padding: 0 2px;
+        }
+        .btn{
+         width: 100px;
+          height: 30px;
+            padding: 4px 8px;
+          background: rgba(202, 62, 84, .1);
+          border-radius: 4px;
+          color: rgba(202, 62, 84, 1);
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .btn-2{
+            background: rgba(71, 82, 118, .1);
+            color: rgba(71, 82, 118, 1);
+        }
+        .btn-3{
+            background: rgba(137, 137, 163, .1);
+            color: rgba(137, 137, 163, 1);
+        }
+        .btn-4{
+            background: rgba(172, 172, 193, .1);
+            color: rgba(172, 172, 193, 1);
+        }
     }
     .bacteria-bg{
       position: absolute;
@@ -225,6 +278,7 @@ export default {
     .right-header{
       color: #6F7F9F;
       font-size: 25px;
+        margin-bottom: 10px;
     }
 
   }

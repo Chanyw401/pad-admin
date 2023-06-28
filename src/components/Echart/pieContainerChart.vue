@@ -20,7 +20,7 @@ export default {
     },
     colorList: {         //颜色
       type: Array,
-      default: () => ['#4e75ff', '#FFD982', '#5AF3B8', '#91DAFF', '#ffaaff']
+      default: () => ['#CA3E54', '#FFD982', '#5AF3B8', '#91DAFF', '#ffaaff']
     },
     totalList: {         //显示圆中间的总值
       type: Array,
@@ -52,7 +52,7 @@ export default {
           // 透明度
           opacity: 1,
           // 扇形颜色
-          color: 'rgba(32,159,237,1)',
+          color: '#CA3E54',
         }
       }, {
         "name": "包车",
@@ -62,7 +62,7 @@ export default {
           // 透明度
           opacity: 1,
           // 扇形颜色
-          color: 'rgba(255,159,32,1)',
+          color: '#475276',
         }
       }, {
         "name": "班车",
@@ -72,7 +72,7 @@ export default {
           // 透明度
           opacity: 1,
           // 扇形颜色
-          color: 'rgba(159,255,237,1)',
+          color: '#8989A3',
         }
       }, {
         "name": "重货",
@@ -82,7 +82,7 @@ export default {
           // 透明度
           opacity: 1,
           // 扇形颜色
-          color: 'rgba(159,255,32,1)',
+          color: '#ACACC1',
         }
       }]
     }

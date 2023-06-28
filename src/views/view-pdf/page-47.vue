@@ -17,29 +17,22 @@
 
                 </div>
             </div>
+            <div class="header-three">
+                检测结果
+            </div>
             <div class="content2-box">
                 <div class="left">
                     <PieContainerChart :dataList="[20,30]"/>
                 </div>
                 <div class="right">
                     <img src="../../assets/img/bacteria-bg.png" class="bacteria-bg" alt="">
-                    <img src="../../assets/img/bacteria-text-bg.png" class="bacteria-text-bg" alt="">
+                    <div class="text-bg">RATIO OF <br/> FIRMICUTESTO BACTEROIDER <br/> (F/B) </div>
                     <div class="right-content">
-                        <div class="right-header">您的主要菌群构成</div>
-                        <div>
-                            <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
-                            </div>
-                            <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
-                            </div>
-                            <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
-                            </div>
-                            <div>
-                                <span></span> <span>厚壁菌门</span> <span>59.6%</span>
-                            </div>
-                        </div>
+                        <div class="right-header">您的菌群偏向于：  <span class="name-btn">厚壁菌</span></div>
+                        <div class="font-title" style="margin-top: 50px">您的厚壁菌/拟杆菌比值为</div>
+                        <div class="number-btn"><div>2.99</div></div>
+                        <div class="font-title" style="margin-top: 10px">中国人平均的厚壁菌/拟杆菌比例为</div>
+                        <div class="number-btn"><div>2.6</div></div>
                     </div>
                 </div>
             </div>
@@ -146,7 +139,7 @@ export default {
     position: relative;
     width: 50%;
     height: 100%;
-    background: #e1e4ea;
+    //background: #e1e4ea;
     border-radius: 0 6px 6px 0;
 
     .right-content {
@@ -155,9 +148,49 @@ export default {
 
     .bacteria-bg {
       position: absolute;
-      top: 53px;
-      left: 50px;
+        top: -47px;
+        left: -29px;
     }
+      .text-bg{
+          position: absolute;
+          bottom: -146px;
+         right: 0;
+          width: 150%;
+          color: rgba(111, 127, 159, .1);
+          text-align: right;
+          font-size: 28px;
+          white-space: nowrap;
+      }
+      .name-btn{
+          padding: 5px 15px;
+          font-size: 28px;
+          background: rgba(203, 66, 87, .1);
+          color: rgba(202, 62, 84, 1) !important;
+          border-radius: 4px;
+      }
+      .font-title{
+          font-size: 18px;
+          color: rgba(111, 127, 159, 1);
+          margin: 10px 0;
+          text-align: left;
+          padding-left: 20px;
+          line-height: 50px;
+      }
+      .number-btn{
+          font-size: 28px;
+          color: rgba(37, 74, 150, 1);
+          margin: 10px 0;
+          text-align: center;
+          padding-left: 20px;
+          display: flex;
+          justify-content: center;
+          div{
+              background: rgba(37, 74, 150, .1);
+              padding: 3px 10px;
+              border-radius: 4px;
+              width: 80px;
+          }
+      }
 
     .bacteria-text-bg {
       position: absolute;
@@ -167,7 +200,7 @@ export default {
 
     .right-header {
       color: #6F7F9F;
-      font-size: 25px;
+      font-size: 24px;
     }
 
   }
