@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 50px" >
-    <production-beat-item v-for="(item,index) in data" :color="colorList[index]" :data="item" :key="index" />
+    <production-beat-item v-for="(item,index) in data" :color="colorList[index]" :isisMultiply="isMultiply" :data="item" :key="index" />
   </div>
 </template>
 
@@ -17,12 +17,13 @@ export default {
         {
         name:'菌群平衡',
         num:50,
-        type:1
+        type:1,
+            btnName:'正常'
       },
         {
           name:'菌群多样性',
           num:31,
-          type:1
+          type:0
         },
         {
           name:'有益菌',
@@ -35,7 +36,11 @@ export default {
           type:1
         }
       ]
-    }
+    },
+      isMultiply:{
+      type:Boolean,
+          default:false
+      }
   },
   data() {
     return {

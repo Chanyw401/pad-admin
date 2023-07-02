@@ -10,11 +10,11 @@
                     </div>
                     <!--                    <div class="theader_item" style="width: 8%;text-align: center;padding-left: 30px"><div class="theader_text">结果</div></div>-->
                     <!--                    <div class="theader_item" style="width: 8%;text-align: center;padding-left: 30px"><div class="theader_text">正常范围</div></div>-->
-                    <div class="theader_item" style="min-width: 4%;" v-for="item in headerList" :key="item">{{ item.name }}</div>
+                    <div class="theader_item" style="min-width: 4%;" v-for="(item,indey) in headerList" :key="indey">{{ item.name }}</div>
 
                 </div>
                 <div class="t-body">
-                    <div v-for="(item,index) in tableList   " :key="index" class="item">
+                    <div v-for="(item,index) in tableList" :key="index" class="item">
                         <div style="width: 36%;text-align: center;">
                             <div>{{ item.name }}</div>
                         </div>
@@ -91,7 +91,7 @@ export default {
                 ['',2,'','','','','','','','','',2,'','','',''],
                 ['',1,1,1,'','','',1,'','','',1,1,'',1,''],
                 [2,'',2,'','','','','','','','','','','','',''],
-                ['','',1,1,'','','','','',2,'',1,3,'','',1],
+                ['','',1,1,'','','','','',2,'',1,1,'','',1],
                 ['','',1,1,'','','','','','','',2,'','',2,''],
                 ['','',1,1,'','','','','','','','','','','',''],
                 ['','',1,1,'','','',2,2,'','','','','','',''],

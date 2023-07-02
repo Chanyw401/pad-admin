@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="car-box">
-      <header-one :data="{name:'您的结果总览',nameEn:'OVERVIEW OF YOUR RESULT',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}" />
+      <header-one :data="{name:'您的结果总览',nameEn:'OVERVIEW OF YOUR RESULT'}" />
       <div class="car-content1">
         <div class="left">
-          <div class="left-item" >菌群健康: <span>13分</span></div>
-          <div class="left-item" >疾病管理: <span style="color: #254A96">18分</span></div>
-          <div class="left-item" >营养评估: <span style="color: #254A96">19分</span></div>
+          <div class="left-item" >菌群健康: <span>{{numberObject.floraHealth}}分</span></div>
+          <div class="left-item" >疾病管理: <span style="color: #254A96">{{numberObject.diseaseManagement}}分</span></div>
+          <div class="left-item" >营养评估: <span style="color: #254A96">{{ numberObject.nutritionAssessment }}分</span></div>
         </div>
         <div class="right">
           <div class="right-titlt">健康总分</div>
           <div class="echart-box">
-            <instrument-panel/>
+            <instrument-panel :number="numberObject.healthScore" v-if="numberObject.healthScore != ''" />
           </div>
         </div>
 
@@ -23,18 +23,18 @@
       <div class="car-content2">
         <div class="car-content2-header">
           <div class="left">肠道预测年龄：</div>
-          <div>64.72岁 </div>
-          <div class="right">肠型：</div>
-          <div>拟杆菌型</div>
+          <div>{{dataInfo.reportTotalTwoDetailVo.age}} </div>
+          <div class="right">肠道类型：</div>
+          <div>{{ ettypeName(dataInfo.ettype) }} </div>
         </div>
         <div class="content">
           <div class="left">
             <div>
               <div class="item">
-                检测到菌种数量：<span>  1000</span> <span  class="btn btn-warning">注意</span>
+                  检测到菌种数量：<span class="number">  {{dataInfo.reportTotalTwoDetailVo.jnum}}</span> <span  class="btn" :class=" dataInfo.reportTotalTwoDetailVo.jnum<800?'btn-warning':'btn-success'">{{dataInfo.reportTotalTwoDetailVo.jnumStr}}</span>
               </div>
               <div class="item">
-                检测到菌种数量：<span>  1000</span> <span class="btn btn-success">注意</span>
+                  香浓多样性指数：<span class="number"> {{mzsNumber}}  </span>  <span class="btn" :class="mzsNumber<2 || mzsNumber>9  ?'btn-warning':'btn-success'">{{ dataInfo.reportTotalTwoDetailVo.mzsStr }}</span>
               </div>
             </div>
           </div>
@@ -70,68 +70,22 @@ export default {
   name:'pageOne',
   data() {
     return {
-      searchData:{},
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
+        dataInfo:{
+            ettype: "ET_P",
+            reportTotalTwoDetailVo:{
+                age:'',
+                jnum:'',
+                mzs:'',
+                jnumStr:'',
+                mzsStr:'',
+
+            },
+            reportTypeVos:[],
+            totalScore:[]
+        },
       tableObj:{
         list:[
-            {
-                name:'肠道菌群平衡',
-                num:31,
-                type:1
-            },
-            {
-                name:'菌群多样性',
-                num:31,
-                type:1
-            },
-            {
-                name:'有益菌',
-                num:31,
-                type:1
-            },  {
-                name:'有害菌',
-                num:31,
-                type:1
-            },
-
         ]
-      },
-      uploadBox: {
-        show: false,
-        title: '修改用户',
-        data: {},
-        rules: {
-          code: [
-            {
-              required: true,
-              message: "账号不能为空",
-              trigger: ["blur", "change"]
-            }
-          ],
-          name: [
-            {
-              required: true,
-              message: "账号不能为空",
-              trigger: ["blur", "change"]
-            }
-          ],
-          password: [
-            {
-              required: true,
-              message: "密码不能为空",
-              trigger: ["blur", "change"]
-            }
-          ]
-        }
       },
       option : {
 
@@ -140,9 +94,9 @@ export default {
         radar: {
           shape: 'circle',
           indicator: [
-            { name: '普氏菌型', max: 100},
-            { name: '拟杆菌型', max: 100},
-            { name: '胃球菌型', max: 100},
+            { name: '普氏菌型', max: 50},
+            { name: '拟杆菌型', max: 50},
+            { name: '胃球菌型', max: 50},
 
           ],
           radius: 80,
@@ -200,12 +154,156 @@ export default {
           ]
         }]
       },
-      echart:null
+        echarList:[],
+      echart:null,
+        numberObject:{
+            floraHealth:'',//菌群健康
+            diseaseManagement:'',//疾病管理
+            nutritionAssessment:'',//营养评估
+            healthScore:'',//健康总分
+        }
     }
   },
+    created() {
+    },
+    methods: {
+        getData(){
+            this.$axios.post('/admin/report/report-total-two',{
+                sampleid:'596908438'
+            }).then(res=>{
+                console.log({res})
+                this.dataInfo = res
+
+                this.numberObject.floraHealth = res.totalScore.find(item=>item.name=='菌群健康')?.value
+                this.numberObject.diseaseManagement = res.totalScore.find(item=>item.name=='慢病管理')?.value
+                this.numberObject.nutritionAssessment = res.totalScore.find(item=>item.name=='营养饮食')?.value
+                this.numberObject.healthScore = Number(res.totalScore.find(item=>item.name=='健康总分')?.value)
+
+                this.$nextTick(()=>{
+                    this.echarList = [res.reportTotalTwoDetailVo.list2.length,res.reportTotalTwoDetailVo.list1.length,res.reportTotalTwoDetailVo.list3.length]
+
+                    this.echarts = echarts.init(this.$refs.circle);
+                    this.option.series[0].data[0].value = this.echarList
+                    this.option.radar.indicator.map(
+                        i=>{
+                            // echarList 最大的值
+                            i.max = Math.max(...this.echarList)*1.2
+                        }
+                    )
+                    this.echarts.setOption(this.option);
+                })
+                //肠道菌群类型及分散图
+                let list = []
+                res.reportTypeVos.map(i=>{
+                    let type = 0
+                    let btnName= ''
+                    if(i.resultVos[0].name == '菌群平衡'){
+                        if(i.resultVos[0].valueDecimal <10){
+                            type = 0
+                            btnName = '严重失调'
+                        }
+                      if(i.resultVos[0].valueDecimal>=10 && i.resultVos[0].valueDecimal <20){
+                          type =0
+                          btnName = '中度失衡'
+                      }
+                        if(i.resultVos[0].valueDecimal>=20 && i.resultVos[0].valueDecimal <30){
+                            type =0
+                            btnName = '轻度失衡'
+                        }
+                        if(i.resultVos[0].valueDecimal>=30  ){
+                            type =1
+                            btnName = '稳定'
+                        }
+
+
+
+                    }
+                    if(i.resultVos[0].name == '菌群多样性'){
+
+                        if(i.resultVos[0].valueDecimal <5){
+                            type = 0
+                            btnName = '菌群脆弱'
+                        }
+                        if(i.resultVos[0].valueDecimal>=5 && i.resultVos[0].valueDecimal <15){
+                            type =0
+                            btnName = '较单一'
+                        }
+                        if(i.resultVos[0].valueDecimal>=15 && i.resultVos[0].valueDecimal <50){
+                            type =0
+                            btnName = '多样性较低'
+                        }
+                        if(i.resultVos[0].valueDecimal>=50  ){
+                            type =1
+                            btnName = '稳定'
+                        }
+                    }
+                    if(i.resultVos[0].name == '有益菌'){
+                        if(i.resultVos[0].valueDecimal <5){
+                            type = 0
+                            btnName = '过低'
+                        }
+                        if(i.resultVos[0].valueDecimal>=5 && i.resultVos[0].valueDecimal <20){
+                            type =0
+                            btnName = '偏低'
+                        }
+
+                        if(i.resultVos[0].valueDecimal>=20  ){
+                            type =1
+                            btnName = '健康'
+                        }
+                    }
+                    if(i.resultVos[0].name == '有害菌控制'){
+                        if(i.resultVos[0].valueDecimal <40){
+                            type =1
+                            btnName = '健康'
+                        }
+                        if(i.resultVos[0].valueDecimal>=40 && i.resultVos[0].valueDecimal <90){
+                            type =0
+                            btnName = '偏高'
+                        }
+
+                        if(i.resultVos[0].valueDecimal>=90  ){
+                            type =0
+                            btnName = '过高'
+                        }
+                    }
+                   list.push({
+                       num:i.resultVos[0].valueDecimal,
+                       name:i.resultVos[0].name,
+                       type:type,
+                       btnName:btnName
+                   })
+                })
+                this.tableObj.list = list
+
+
+            })
+        },
+        ettypeName(e){
+            let val =''
+            if(e == 'ET_B'){
+                val = '拟杆菌型'
+            }
+            if(e == 'ET_F'){
+                val = '厚壁菌型'
+            }
+            if(e == 'ET_P'){
+                val = '普雷沃氏菌型'
+            }
+            console.log(val,e,'1')
+            return val
+        }
+
+    },
+    computed:{
+        mzsNumber(){
+          return Number(this.dataInfo.reportTotalTwoDetailVo.mzs).toFixed(2)
+          //偏少：低于200/较少：200-800/健康：大于800
+      },
+       
+    },
   mounted() {
-    this.echarts = echarts.init(this.$refs.circle);
-    this.echarts.setOption(this.option);
+      this.getData()
   }
 }
 </script>
@@ -225,6 +323,7 @@ export default {
     font-size: 18px;
     .left-item{
       margin-bottom: 29px;
+
 
       span{
         color: red;
@@ -341,6 +440,10 @@ export default {
 .btn-success {
   background: rgba(37, 74, 150, .2);
   color: #254A96 !important;
+}
+.number{
+  min-width: 40px;
+  display: inline-block;
 }
 
 </style>

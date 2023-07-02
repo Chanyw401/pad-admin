@@ -24,21 +24,21 @@
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
-                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 10%;text-align: center ">{{item.value}}</div>
+                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name1}}</div>
+                        <div style="width: 10%;text-align: center ">{{toFixed3(item.value1)}}</div>
                         <div style="width: 10%;text-align: center ">
-                            {{item.state == 0 ?'-': item.state ==1? '↓' : '↑'}}
+                            {{item.state1 == 0 ?'-': item.state1 ==1? '↓' : '↑'}}
                         </div>
                         <div style="width: 15%;text-align:center;">
-                            {{item.value2}}
+                            {{item.range1}}
                         </div>
-                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 10%;text-align: center ">{{item.value}}</div>
+                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name2}}</div>
+                        <div style="width: 10%;text-align: center ">{{toFixed3(item.value2)}}</div>
                         <div style="width: 10%;text-align: center ">
-                            {{item.state == 0 ?'-': item.state ==1? '↓' : '↑'}}
+                            {{item.state2 == 0 ?'-': item.state2 ==1? '↓' : '↑'}}
                         </div>
                         <div style="width: 15%;text-align:center;">
-                            {{item.value2}}
+                            {{item.range2}}
                         </div>
                     </div>
                 </div>
@@ -77,6 +77,42 @@ export default {
 
         }
     },
+    created() {
+    this.getData()
+        },
+    methods:{
+        getData(){
+            this.$axios.post('/admin/report/abundance-all',
+                {sampleid:"596908438"}
+            ).then(
+                res => {
+                    this.tableList = []
+                    //向上取整
+                    let middle = Math.ceil(res.b2.length/2)
+                    res.b2.map((item,index)=>{
+                        if(index<middle){
+                            this.tableList.push({
+                                name1:item.name,
+                                value1:item.value,
+                                range1:item.range,
+                                state1:item.type,
+                                name2:index+middle<res.b2.length?res.b2[index+middle].name:'',
+                                value2:index+middle<res.b2.length?res.b2[index+middle].value:'',
+                                range2:index+middle<res.b2.length?res.b2[index+middle].range:'',
+                                state2:index+middle<res.b2.length?res.b2[index+middle].type:'',
+
+                            })
+                        }
+
+                        }
+                    )
+                }
+            )
+        },
+        toFixed3(num) {
+            return num !=''? Number(num).toFixed(3):0
+        },
+    }
 }
 </script>
 

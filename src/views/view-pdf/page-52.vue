@@ -7,25 +7,25 @@
 
             <div>
                 <div class="theader">
-                    <div style="width: 35%;text-align: left;padding-left: 30px">名称</div>
-                    <div style="width: 10%;text-align: center ">丰度%</div>
-                    <div style="width: 40%;text-align: center "> 人群水平%</div>
-                    <div style="width: 10%;text-align:center">%人检出</div>
+                    <div style="width: 40%;text-align: center">名称</div>
+                    <div style="width: 20%;text-align: center ">丰度%</div>
+                    <div style="width: 40%;text-align:center">人群水平%</div>
+                    <div style="width: 20%;text-align:center">%人检出</div>
                 </div>
                 <div class="t-body">
-                    <div v-for="(item,index) in tableList2   " :key="index" class="item">
-                        <div style="width: 35%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 10%;text-align: center ">{{item.value}}</div>
-                        <div style="width: 40%;text-align: left;   padding-top: 17px;padding-right: 15px;padding-left: 30px ">
-                            <el-progress :percentage="item.value2" :stroke-width="8" color="#2E5CBB"></el-progress>
+                    <div v-for="(item,index) in tableList   " :key="index" class="item">
+                        <div class="Table-name" style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
+                        <div style="width: 20%;text-align: center ">{{toFixed(item.value)}}%</div>
+                        <div style="width: 40%;text-align:center;    padding-top: 9px;padding-right: 25px;">
+                            <el-progress :percentage="Number(item.percent)" :stroke-width="8" color="#2E5CBB"></el-progress>
                         </div>
-                        <div style="width: 10%;text-align:center;">
-                            {{item.value2}}
+                        <div style="width: 20%;text-align: center">{{item.population}}
                         </div>
                     </div>
                 </div>
+
             </div>
-            <footer-box :data="52"/>
+            <footer-box :data="'52'"/>
         </div>
 
     </div>
@@ -41,37 +41,35 @@ export default {
     data() {
         return {
             tableList:[
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:0.1914-14.598,state: 1},
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:0.1914-14.598,state:1},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:0.1914-14.598,state:0},
+
 
             ],
-            tableList2:[
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:55,state:1},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:44,state:0},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:33,state: 2},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:1,state: 2},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100,state: 1},
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:55,state:1},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:44,state:0},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:33,state: 2},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:1,state: 2},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100,state: 1},
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:55,state:1},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:44,state:0},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:33,state: 2},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:1,state: 2},
-              
-            ]
 
 
 
         }
     },
+    mounted() {
+        this.getData()
+    },
+    methods:{
+        getData(){
+            this.$axios.post('/admin/report/bacter-details',{
+                sampleid:'596908438',
+                level:'属'
+            }).then(res=>{
+                this.tableList = []
+                res.map((item,index)=>{
+                    if(index<14){
+                        this.tableList.push(item)
+                    }
+                })
+            })
+        },
+        toFixed(num){
+            return Number(num).toFixed(3)
+        },
+    }
 }
 </script>
 

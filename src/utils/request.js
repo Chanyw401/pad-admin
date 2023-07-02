@@ -40,7 +40,6 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
-      console.log(response,'response')
     if (response.config.loading) {
       // Loading.service().close();
       window.loadingInstance.close();

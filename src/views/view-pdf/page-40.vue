@@ -57,10 +57,7 @@ export default {
 
         return {
             tableList:[
-                {name: "双歧杆菌属Bifidobacterium",value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'经黏液真杆菌属 Blautia',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'肠杆菌属 Enterobacter',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'枸橼酸杆菌属 Citrobacter',value:'59.545%',value2:0.1914-14.598,state: 2},
+
             ],
             list:[{   name:'认知障碍',
                 num:50,
@@ -70,6 +67,13 @@ export default {
 
         }
     },
+    created() {
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'认知障碍（老年痴呆预兆）'}).then(res=>{
+            this.tableList = res
+            console.log(res,'老年痴呆预兆')
+        })
+
+    }
 }
 </script>
 

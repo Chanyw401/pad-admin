@@ -11,20 +11,20 @@
             </div>
             <div>
                 <div class="theader">
-                    <div style="width: 40%;text-align: left;padding-left: 30px">菌名</div>
-                    <div style="width: 15%;text-align: center ">检查结果</div>
+                    <div style="width: 35%;text-align: left;padding-left: 30px">菌名</div>
+                    <div style="width: 20%;text-align: center ">检查结果</div>
                     <div style="width: 25%;text-align: center "> 正常范围</div>
                     <div style="width: 20%;text-align:center">对疾病有益/有害</div>
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
-                        <div style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 15%;text-align: center ">{{item.value}}</div>
+                        <div style="width: 35%;text-align: left;padding-left: 10px">{{item.name}}</div>
+                        <div style="width: 20%;text-align: center ">{{item.value}}</div>
                         <div style="width: 25%;text-align:center;">
-                            {{item.value2}}
+                            {{item.range}}
                         </div>
                         <div style="width: 20%;text-align: center ">
-                            {{item.state == 0 ?'有益菌':'有害菌'}}
+                            {{item.badgood }}
                         </div>
 
                     </div>
@@ -59,10 +59,7 @@ export default {
     data() {
         return {
             tableList:[
-                {name:'双歧杆菌属Bifidobacterium',value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'别样杆菌属',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'直肠真杆菌属 Agathobacter',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'韦荣菌属 Veillonella',value:'59.545%',value2:0.1914-14.598,state: 2},
+
 
 
             ],
@@ -73,7 +70,14 @@ export default {
 
 
         }
-    },
+    },created() {
+
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肠易激综合征'}).then(res=>{
+            this.tableList = res
+            console.log(res,'2222')
+        })
+
+    }
 }
 </script>
 

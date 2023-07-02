@@ -90,6 +90,36 @@ export default {
 
     }
   },
+    created() {
+        this.$axios.post('/admin/report/anti', {
+            sampleid: '596908438'
+        }).then(res => {
+            let list =[]
+            res.resultVos.map(i => {
+                let type =0 // 0 为eroor 1 为正常
+                let btnName = '低风险'
+                if(i.valueDecimal<5){
+                    type = 0
+                    btnName = '缺乏'
+                }
+                if(i.valueDecimal>=5 && i.valueDecimal<15){
+                    type = 0
+                    btnName = '偏低'
+                }
+                if(i.valueDecimal>=15){
+                    type = 1
+                    btnName = '正常'
+                }
+                list.push({
+                    num:i.valueDecimal.toFixed(2),
+                    name:i.name,
+                    type:type,
+                    btnName:btnName
+                })
+            })
+            this.listInfo = list
+        })
+    }
 }
 </script>
 

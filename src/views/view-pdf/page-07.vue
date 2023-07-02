@@ -20,9 +20,7 @@
                          style="width:150px;text-align: center;padding-left: 5px;writing-mode:unset;justify-content: center;align-items: flex-end">
                         <div style="writing-mode:unset;">疾病名称/<br>菌属名称</div>
                     </div>
-                    <!--                    <div class="theader_item" style="width: 8%;text-align: center;padding-left: 30px"><div class="theader_text">结果</div></div>-->
-                    <!--                    <div class="theader_item" style="width: 8%;text-align: center;padding-left: 30px"><div class="theader_text">正常范围</div></div>-->
-                    <div class="theader_item" style="min-width: 4%;" v-for="item in headerList" :key="item">{{
+                    <div class="theader_item" style="min-width: 4%;" v-for="(item,index) in headerList" :key="index">{{
                         item.name
                         }}
                     </div>
@@ -33,9 +31,7 @@
                         <div style="width: 36%;text-align: center;">
                             <div>{{ item.name }}</div>
                         </div>
-                        <!--                        <div  style="width: 8%;text-align: center;padding-left: 30px"><div >结果</div></div>-->
-                        <!--                        <div  style="width: 8%;text-align: center;padding-left: 30px"><div >正常范围</div></div>-->
-                        <div class="tody_item" v-for="(e,indez) in 16" :key="e">
+                        <div class="tody_item" v-for="(e,indez) in 16" :key="indez">
                             <div class="state-item"
                                  :class="statelist[index][indez]==2?'active':statelist[index][indez] ==1?'error':'' ">
                                 {{ statelist[index][indez] == 2 ? '+' : statelist[index][indez] == 1 ? '-' : '' }}

@@ -12,10 +12,12 @@
         <div class="progress"></div>
         <div class="partition"></div>
         <div class="progress"></div>
-        <div class="progress-bg" :style="{ width: `${data.num}%`,background: color }"></div>
+        <div class="progress-bg" v-if="!isisMultiply" :style="{ width: `${data.num}%`,background: color }"></div>
+          <div class="progress-bg" v-if="isisMultiply" :style="{ width: `${Multiply(data.num)}%`,background: color }"></div>
+
       </div>
       <div class="item-num">{{data.num}}</div>
-      <div class="state-btn">低风险</div>
+      <div class="state-btn" :class="data.type ==0?'error-btn':''">{{ data.btnName }}</div>
     </div>
 
   </div>
@@ -33,26 +35,27 @@ export default {
       type: String,
       default: "#8989A3",
     },
-    progress: {
-      type: Number,
-      default: 20,
+    isisMultiply: {
+      type: Boolean,
+      default: false,
     },
+
   },
   watch: {},
   computed: {},
   data() {
     return {
-      a: 60,
-    };
+
+    }
   },
   mounted() {
-    setInterval(() => {
-      // a -> 随机生成0-100
-      this.a = Math.floor(Math.random() * 100);
 
 
-    }, 2000);
-  },
+  },methods:{
+        Multiply(val){
+      return val*100
+        }
+    }
 };
 </script>
 
@@ -69,6 +72,7 @@ export default {
     margin-right: 10px;
   }
   .item-num{
+    min-width: 56px;
     padding: 0 10px;
     font-size: 14px;
     font-weight: 300;

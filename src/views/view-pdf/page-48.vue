@@ -58,14 +58,17 @@
                 <div class="theader">
                     <div style="width: 40%;text-align: center">名称</div>
                     <div style="width: 20%;text-align: center ">丰度%</div>
-                    <div style="width: 50%;text-align:center">人群水平%</div>
+                    <div style="width: 40%;text-align:center">人群水平%</div>
+                    <div style="width: 20%;text-align:center">%人检出</div>
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
                         <div style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 20%;text-align: center ">{{item.value}}</div>
-                        <div style="width: 50%;text-align:left;    padding-top: 9px;padding-right: 25px;">
-                            <el-progress :percentage="item.value2" :stroke-width="8" color="#2E5CBB"></el-progress>
+                        <div style="width: 20%;text-align: center ">{{toFixed(item.value)}}%</div>
+                        <div style="width: 40%;text-align:center;    padding-top: 9px;padding-right: 25px;">
+                            <el-progress :percentage="Number(item.percent)" :stroke-width="8" color="#2E5CBB"></el-progress>
+                        </div>
+                        <div style="width: 20%;text-align: center">{{item.population}}
                         </div>
                     </div>
                 </div>
@@ -97,17 +100,29 @@ export default {
     data() {
         return {
             tableList:[
-                {name:'厚壁菌门 Firmicutes',value:'59.545%',value2:15},
-                {name:'拟杆菌门 Bacteroidetes',value:'59.545%',value2:35},
-                {name:'变形菌门 Proteobacteria',value:'59.545%',value2:45},
-                {name:'放线菌门 Actinobacteria',value:'59.545%',value2:55},
-                {name:'螺旋体 Spirochaetes',value:'59.545%',value2:100},
             ]
 
 
 
         }
     },
+    mounted() {
+        this.getData()
+    },
+    methods:{
+        getData(){
+            this.$axios.post('/admin/report/bacter-details',{
+                sampleid:'596908438',
+                level:'门'
+            }).then(res=>{
+                this.tableList = res
+                console.log(res,48)
+            })
+        },
+        toFixed(num){
+            return Number(num).toFixed(3)
+        },
+    }
 }
 </script>
 

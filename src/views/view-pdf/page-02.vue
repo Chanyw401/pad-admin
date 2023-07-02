@@ -1,19 +1,19 @@
 <template>
     <div>
         <div class="car-box">
-            <header-one :data="{name:'您的检测报告总览',nameEn:'Overview of your test report',No:'NO：BG202304172012',date:''}"/>
+            <header-one :data="{name:'您的检测报告总览',nameEn:'Overview of your test report',No:'NO:'+userInfo.sampleid,date:''}"/>
             <div class="content-box">
                 <div class="content-header">基本信息</div>
                 <div class="content">
                     <div class="left">
-                        <div><span>姓名：</span> 王麻子</div>
-                        <div><span>年龄：</span> 30 岁</div>
-                        <div><span>性别：</span> 男</div>
+                        <div><span>姓名：</span> {{userInfo.sampleusername}}</div>
+                        <div><span>年龄：</span> {{userInfo.age}}</div>
+                        <div><span>性别：</span> {{userInfo.sex}}</div>
                     </div>
                     <div class="right">
-                        <div><span>样本编号：</span> BG202304172012</div>
-                        <div><span>报告日期：</span> 2023-04-17</div>
-                        <div><span>备注：</span> 有直肠炎病史，注意饮食规律，保持充足睡眠。</div>
+                        <div><span>样本编号：</span> {{ userInfo.sampleid }}</div>
+                        <div><span>报告日期：</span> NO:{{ userInfo.reportdate }}</div>
+                        <div><span>备注：</span> {{ userInfo.comment }}</div>
                     </div>
                     <div class="bg">
                         <img src="../../assets/img/car-pdf/Basicinformation.png" alt="">
@@ -67,16 +67,14 @@
 <script>
 import HeaderTow from "@/components/pdf-common/header-tow.vue";
 import HeaderOne from "@/components/pdf-common/header-one.vue";
-// import InstrumentPanel from "@/components/Echart/instrument-panel.vue";
-// import ProductionBeat from "@/components/common/production-beat.vue";
 import FooterBox from "@/components/pdf-common/footer-box.vue";
-// import PieContainerChart from "@/components/Echart/pieContainerChart.vue";
 
 export default {
     components: {FooterBox, HeaderOne, HeaderTow},
     name: 'page0',
     data() {
         return {
+            userInfo:{},
             tableList: [
                 {name: '厚壁菌门 Firmicutes', value: '59.545%', value2: 15},
                 {name: '拟杆菌门 Bacteroidetes', value: '59.545%', value2: 35},
@@ -88,6 +86,19 @@ export default {
 
         }
     },
+    created() {
+        this.getData()
+    },
+    methods: {
+    getData(){
+        this.$axios.post('/admin/report/report-total',{
+            sampleid:'596908438'
+        }).then(res=>{
+            this.userInfo = res.sampleinfoVo
+
+        })
+    }
+        },
 }
 </script>
 

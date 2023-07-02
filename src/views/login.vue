@@ -133,7 +133,7 @@ export default {
       this.$refs.loginBox.validate((valid, field) => {
         if (valid) {
           this.$store.dispatch('user/login', { data: this.loginBox.data, option: { noTip: true } }).then(res => {
-            this.$tool.setToken(res.token);
+            this.$tool.setToken(res);
             this.$router.push({
               path: this.redirect || '/index'
             });

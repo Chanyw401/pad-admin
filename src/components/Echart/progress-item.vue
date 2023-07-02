@@ -8,7 +8,7 @@
           <div class="popover">{{data.num}}</div>
         </div>
       </div>
-      <div class="state-btn">低风险</div>
+      <div class="state-btn" :class="data.type ==0?'error-btn':''">{{ data.btnName }}</div>
     </div>
 
   </div>
@@ -68,7 +68,7 @@ export default {
     color: #4779A6;
   }
   .item-content {
-    width: 360px;
+    width: 380px;
     height: 10px;
     // background: pink;
     z-index: 3;
@@ -78,6 +78,7 @@ export default {
     position: relative;
     background: #E2E5EC;
     margin-right: 36px;
+    margin-left: 10px;
     .progress {
       width: 100px;
       background: rgba(226, 229, 236, 1);

@@ -10,6 +10,7 @@
   margin: 0 auto;
   position: relative;
   page-break-inside: avoid;
+  overflow: hidden;
 }
 
 .footer-box{
@@ -38,6 +39,7 @@
   text-align: center;
   line-height: 24px;
   font-size: 12px;
+  //border-radius: 4px;
   &:before{
     position: absolute;
     content: "";
@@ -48,6 +50,9 @@
     left: 0;
     right: 0;
   }
+}
+.error-btn{
+  background: #CA3E54 !important;
 }
 .header-three {
   color: #1A356B;
@@ -77,4 +82,10 @@
     left: 0;
     top: 50%;
   }
+}
+.Table-name{
+  //不换行
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

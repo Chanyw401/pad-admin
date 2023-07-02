@@ -3,10 +3,10 @@
     <div class="car-box">
       <header-tow :data="{name:'微量元素评估',nameEn:'MAIN NUTRTIONAL ASSESSMENT'}"></header-tow>
 
-       <production-beat :data="listInfo2" />
+       <production-beat :data="listInfo" />
 
       <header-tow :data="{name:'氨基酸评估',nameEn:'MAIN NUTRTIONAL ASSESSMENT'}"></header-tow>
-      <production-beat :data="listInfo" />
+      <production-beat :data="listInfo2" />
 
 
 
@@ -140,6 +140,74 @@ export default {
       ]
     }
   },
+    created() {
+        this.getData()
+    },
+    methods:{
+        getData(){
+            this.$axios.post('/admin/report/nutrition-wl',{
+                sampleid:'596908438',
+            }).then(res=>{
+                let list =[]
+                res.resultVos.map(i => {
+                    let type =0 // 0 为eroor 1 为正常
+                    let btnName = '缺乏'
+                    if(i.valueDecimal<5){
+                        type = 0
+                        btnName = '缺乏'
+                    }
+                    if(i.valueDecimal>= 5 && i.valueDecimal<15){
+                        type = 0
+                        btnName = '偏低'
+                    }
+                    if(i.valueDecimal>=15){
+                        type = 1
+                        btnName = '正常'
+                    }
+                    list.push({
+                        num:i.valueDecimal.toFixed(2),
+                        name:i.name,
+                        type:type,
+                        btnName:btnName
+                    })
+                })
+                this.listInfo = list
+
+
+            })
+            this.$axios.post('/admin/report/nutrition-ag',{
+                sampleid:'596908438',
+            }).then(res=>{
+                console.log(res,54)
+                let list =[]
+                res.resultVos.map(i => {
+                    let type =0 // 0 为eroor 1 为正常
+                    let btnName = '缺乏'
+                    if(i.valueDecimal<5){
+                        type = 0
+                        btnName = '缺乏'
+                    }
+                    if(i.valueDecimal>= 5 && i.valueDecimal<15){
+                        type = 0
+                        btnName = '偏低'
+                    }
+                    if(i.valueDecimal>=15){
+                        type = 1
+                        btnName = '正常'
+                    }
+                    list.push({
+                        num:i.valueDecimal.toFixed(2),
+                        name:i.name,
+                        type:type,
+                        btnName:btnName
+                    })
+                })
+                this.listInfo2 = list
+
+
+            })
+        },
+    }
 }
 </script>
 
