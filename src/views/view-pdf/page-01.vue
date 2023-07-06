@@ -45,6 +45,7 @@ export default {
 
 
   .content {
+      font-family: YouShe;
     position: relative;
     height: 800px;
     background: linear-gradient(180deg, #EAECED 0%, rgba(234, 236, 237, 0) 100%);

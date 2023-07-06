@@ -143,6 +143,7 @@ export default {
 }
 
 .content-box {
+    font-family: YouShe;
   height: 200px;
   margin-bottom: 60px;
 
@@ -206,6 +207,7 @@ export default {
 }
 
 .content2-box {
+    font-family: YouShe;
   width: 100%;
 
   .li-item {

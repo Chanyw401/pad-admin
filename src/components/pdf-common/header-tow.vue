@@ -1,6 +1,6 @@
 <template>
   <div class="car-header2">
-    {{ data.name }} <span class="title-en">{{data.nameEn}}</span>
+    {{ data.name }} <span class="title-en">{{toUp(data.nameEn)}}</span>
   </div>
 
 </template>
@@ -14,7 +14,13 @@ export default {
       default:()=>{
       }
     }
-  }
+  },
+    methods:{
+      toUp(val){
+        return val.toUpperCase()
+
+      }
+    }
 
 }
 </script>

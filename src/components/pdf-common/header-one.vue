@@ -2,7 +2,7 @@
   <div class="car-header1">
     <div class="left">
       <div class="title">{{ data.name }}</div>
-      <div class="title-en">{{ data.nameEn }}</div>
+      <div class="title-en">{{ toUp(data.nameEn) }}</div>
     </div>
     <div class="right">
       <div class="No">{{data.No}}</div>
@@ -27,6 +27,12 @@ export default {
 
       }
     }
+  },
+    methods:{
+    toUp(val){
+      return val.toUpperCase()
+
+    }
   }
 
 }
@@ -40,7 +46,7 @@ export default {
   justify-content: space-between;
   margin-bottom: 50px;
 
-  font-family: YouSheBiaoTiHei-Bold, YouSheBiaoTiHei;
+  font-family: YouSheBiaoTiHei-Bold, YouSheBiaoTiHei !important;
   .left{
     .title{
       font-size: 48px;
@@ -54,6 +60,7 @@ export default {
       color: #6F7F9F;
       line-height: 26px;
       letter-spacing: 1px;
+      padding-top: 4px;
     }
   }
   .right{
