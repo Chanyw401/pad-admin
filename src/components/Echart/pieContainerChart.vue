@@ -46,7 +46,7 @@ export default {
       option: [],
       list : [{
         "name": "危运",
-        "value": 40,
+        "value": 50,
         "number": 100,
         itemStyle: {
           // 透明度
@@ -57,7 +57,7 @@ export default {
       }, {
         "name": "包车",
         "value": 30,
-        "number": 80,
+        "number": 100,
         itemStyle: {
           // 透明度
           opacity: 1,
@@ -66,8 +66,8 @@ export default {
         }
       }, {
         "name": "班车",
-        "value": 20,
-        "number": 60,
+        "value": 15,
+        "number": 100,
         itemStyle: {
           // 透明度
           opacity: 1,
@@ -76,8 +76,8 @@ export default {
         }
       }, {
         "name": "重货",
-        "value": 10,
-        "number": 10,
+        "value": 5,
+        "number": 100,
         itemStyle: {
           // 透明度
           opacity: 1,
@@ -88,12 +88,12 @@ export default {
     }
   },
   watch: {
-    // dataList: {
-    //   handler(newVal) {
-    //     this.setPieOption(this.myechart, newVal)
-    //   },
-    //   deep: true
-    // },
+    dataList: {
+      handler(newVal) {
+        this.setPieOption(newVal)
+      },
+      deep: true
+    },
   },
 
   mounted() {

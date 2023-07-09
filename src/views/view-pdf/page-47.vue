@@ -22,17 +22,17 @@
             </div>
             <div class="content2-box">
                 <div class="left">
-                    <PieContainerChart :dataList="[20,30]"/>
+                    <PieContainerChart :dataList="list"/>
                 </div>
                 <div class="right">
                     <img src="../../assets/img/bacteria-bg.png" class="bacteria-bg" alt="">
-                    <div class="text-bg">RATIO OF <br/> FIRMICUTESTO BACTEROIDER <br/> (F/B) </div>
+                    <div class="text-bg">RATIO OF <br/> FIRMICUTESTO BACTEROIDER <br/> (E/B) </div>
                     <div class="right-content">
-                        <div class="right-header">您的菌群偏向于：  <span class="name-btn">厚壁菌</span></div>
+                        <div class="right-header">您的菌群偏向于：  <span class="name-btn">{{ name }}</span></div>
                         <div class="font-title" style="margin-top: 50px">您的厚壁菌/拟杆菌比值为</div>
-                        <div class="number-btn"><div>2.99</div></div>
+                        <div class="number-btn"><div>{{ userInfo.bpEpValue }}</div></div>
                         <div class="font-title" style="margin-top: 10px">中国人平均的厚壁菌/拟杆菌比例为</div>
-                        <div class="number-btn"><div>2.6</div></div>
+                        <div class="number-btn"><div>{{userInfo.beValue }} </div></div>
                     </div>
                 </div>
             </div>
@@ -59,11 +59,57 @@ export default {
                 {name: '变形菌门 Proteobacteria', value: '59.545%', value2: 45},
                 {name: '放线菌门 Actinobacteria', value: '59.545%', value2: 55},
                 {name: '螺旋体 Spirochaetes', value: '59.545%', value2: 100},
-            ]
+            ],
+            userInfo:{
+                fpbpValue:0,
+            },
+            name:'',
+            colorList: ['#CA3E54', '#475276', '#8989A3', '#2E5CBB', '#E1E4EA'],
+            list: [{
+                "name": "双歧杆菌",
+                "value": 50,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: .8,
+                    // 扇形颜色
+                    color: '#CA3E54',
+                }
+            },  {
+                "name": "肠杆菌",
+                "value": 5,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: .8,
+                    // 扇形颜色
+                    color: '#475276',
+                }
+            }]
 
 
         }
     },
+    created() {
+        this.getData()
+    },
+    methods:{
+        getData(){
+            this.$axios.post('/admin/report/b-e',  {sampleid:this.$route.query.sampleid}).then(res=>{
+                console.log(res,'99999')
+                if(res.bp>res.ep){
+                    this.name='双歧杆菌'
+                }else {
+                    this.name='肠杆菌'
+                }
+                this.list[0].value=res.bp
+                this.list[1].value=res.ep
+
+                this.userInfo = res
+            })
+
+        }
+    }
 }
 </script>
 

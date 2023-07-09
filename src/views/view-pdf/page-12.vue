@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'炎症性肠病',nameEn:'Inflammatory bowel disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 炎症性肠病（inflammationboweldisease，IBD）是一种病因未明的肠道炎症性疾病，和普通肠炎有较大区别。普通肠炎一般是急性的，进行抗感染治疗后可以治愈。而IBD病程迁延，反复发作，目前仍无法治愈。近20年来，我国IBD发病率快速增长。病人一旦得病，诊断、治疗方面要花费大量的费用，这会给患者、家庭、社会带来巨大的负担，IBD也因此得名——绿色的癌症。
@@ -85,14 +85,32 @@ export default {
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '炎症性肠病')
+            },
+            deep: true
+        }
+    },
     created() {
 
-            this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'炎症性肠病'}).then(res=>{
+            this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'炎症性肠病',   sampleid:this.$route.query.sampleid}).then(res=>{
                 this.tableList = res
-                console.log(res,'111')
+                this.tableList.map(i=>{
+                    i.value = Number(i.value).toFixed(4)
+                })
             })
 
-    }
+
+    },
+
 }
 </script>
 

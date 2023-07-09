@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'甲状腺疾病',nameEn:'Thyroid disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :isMultiply="true"   :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 甲状腺疾病是指影响甲状腺功能的各种疾病。甲状腺是位于颈部前方的一个腺体，它产生和释放甲状腺激素，对身体的新陈代谢、能量消耗、心脏功能和其他重要过程起着调节作用。包括甲亢、甲减，以及甲状腺肿瘤、甲状腺炎、甲状腺结节等。
@@ -56,19 +56,35 @@ export default {
 
 
             ],
-            list:[{   name:'甲状腺疾病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '甲状腺疾病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'甲状腺疾病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'甲状腺疾病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
+
 
     }
 }

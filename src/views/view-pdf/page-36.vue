@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'肾病',nameEn:'nephropathy'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :isMultiply="true"   :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 肾病是指肾脏出现结构或功能异常的疾病，可以影响肾脏的滤过功能、尿液产生、排除废物和液体平衡等重要功能。肾脏是人体的重要器官之一，主要功能包括排除体内废物和过剩液体、维持体内电解质和酸碱平衡、产生荷尔蒙等。
@@ -60,19 +60,35 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'肾病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '肾病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肾病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肾病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
+
 
     }
 }

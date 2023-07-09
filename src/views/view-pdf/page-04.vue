@@ -36,7 +36,7 @@ export default {
     },
     created() {
         this.$axios.post('/admin/report/disease', {
-            sampleid: '596908438'
+            sampleid: this.$route.query.sampleid
         }).then(res => {
             let list =[]
             res.resultVos.map(i => {
@@ -66,6 +66,7 @@ export default {
                 })
             })
             this.listInfo = list
+            this.$EventBus.$emit('listInfo', list)
         })
     }
 }

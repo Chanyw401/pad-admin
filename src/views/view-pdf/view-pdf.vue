@@ -9,38 +9,38 @@
       <page07/>
       <Page08/>
       <page09/>
-      <page10/>
-      <page11/>
-      <page12/>
+      <page10 :listInfo="listInfo" v-if="age>=30" />
+      <page11 v-if="age>=30" />
+      <page12 :listInfo="listInfo"/>
       <page13/>
-      <page14/>
+      <page14 :listInfo="listInfo"/>
       <page15/>
-      <page16/>
-      <page17/>
-      <page18/>
-      <page19/>
-      <page20/>
-      <page21/>
-      <page22/>
-      <page23/>
-      <page24/>
-      <page25/>
-      <page26/>
-      <page27/>
-      <page28/>
-      <page29/>
-      <page30/>
+      <page16 :listInfo="listInfo" />
+      <page17 />
+      <page18 :listInfo="listInfo" v-if="age>=15"/>
+      <page19  v-if="age>=15"/>
+      <page20 :listInfo="listInfo" v-if="age>=25"/>
+      <page21 v-if="age>=25"/>
+      <page22 v-if="age>=15" :listInfo="listInfo"/>
+      <page23 v-if="age>=15"/>
+      <page24 v-if="age>=21" :listInfo="listInfo"/>
+      <page25 v-if="age>=21"/>
+      <page26 v-if="age>=21" :listInfo="listInfo"/>
+      <page27  v-if="age>=21"/>
+      <page28  v-if="age>=1" :listInfo="listInfo"/>
+      <page29  v-if="age>=1"/>
+      <page30 :listInfo="listInfo"/>
       <page31/>
-      <page32/>
-      <page33/>
-      <page34/>
-      <page35/>
-      <page36/>
-      <page37/>
-      <page38/>
-      <page39/>
-      <page40/>
-      <page41/>
+      <page32 :listInfo="listInfo"  v-if="age>=6"/>
+      <page33  v-if="age>=6"/>
+      <page34  v-if="age<=15" :listInfo="listInfo"/>
+      <page35  v-if="age<=15"/>
+      <page36  v-if="age>=21" :listInfo="listInfo"/>
+      <page37  v-if="age>=21"/>
+      <page38  v-if="age>=5" :listInfo="listInfo"/>
+      <page39  v-if="age>=5"/>
+      <page40  v-if="age>=56" :listInfo="listInfo"/>
+      <page41  v-if="age>=56"/>
       <page42/>
       <page43/>
       <page44/>
@@ -185,65 +185,73 @@ export default {
     PageTwo,
     PageOne,
   },
+
   data() {
     return {
-      searchData: {},
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
-      },
-      tableObj: {
-        list: [
-          { name: "1", code: "YG001" },
-          { name: "2", code: "YG002" },
-          { name: "3", code: "YG003" },
-          { name: "4", code: "YG004" },
-          { name: "5", code: "YG005" },
-        ],
-      },
-      uploadBox: {
-        show: false,
-        title: "修改用户",
-        data: {},
-        rules: {
-          code: [
-            {
-              required: true,
-              message: "账号不能为空",
-              trigger: ["blur", "change"],
-            },
-          ],
-          name: [
-            {
-              required: true,
-              message: "账号不能为空",
-              trigger: ["blur", "change"],
-            },
-          ],
-          password: [
-            {
-              required: true,
-              message: "密码不能为空",
-              trigger: ["blur", "change"],
-            },
-          ],
-        },
-      },
+        age:'',
+        listInfo: [],
     };
   },
     created() {
-      this.$axios.post('/admin/sample/report',{
-          code:'596908438'
+      sessionStorage.setItem('token', this.$route.query.token)
+
+
+
+    },
+    mounted() {
+        this.$axios.post('/admin/report/disease', {
+            sampleid: this.$route.query.sampleid
+        }).then(res => {
+            let list =[]
+            res.resultVos.map(i => {
+                let type =0 // 0 为eroor 1 为正常
+                let btnName = '低风险'
+                if(i.valueDecimal<0.3){
+                    type = 1
+                    btnName = '低风险'
+                }
+                if(i.valueDecimal>=0.3 && i.valueDecimal<0.5){
+                    type = 0
+                    btnName = '注意'
+                }
+                if(i.valueDecimal>=0.5 && i.valueDecimal<0.7){
+                    type = 0
+                    btnName = '中等风险'
+                }
+                if(i.valueDecimal>=0.7){
+                    type = 0
+                    btnName = '高风险'
+                }
+                list.push({
+                    num:i.valueDecimal.toFixed(2),
+                    name:i.name,
+                    type:type,
+                    btnName:btnName
+                })
+            })
+            this.listInfo = list
+        })
+      this.$axios.post('/admin/report/report-total',{
+          sampleid:this.$route.query.sampleid
       }).then(res=>{
-          console.log(res)
+          // age 去掉岁 并转化成数字
+
+          this.age = res.sampleinfoVo.age.replace(/岁/g,'')
+          this.$nextTick(()=>{
+              const footer = document.querySelectorAll('.footer-text')
+              // 变量给 footer赋值
+
+              footer.forEach((item,index)=>{
+
+                  item.innerHTML = index<9 ?'0'+ (index+1) : index+1
+              })
+
+          })
+
+
       })
     }
+
 };
 </script>
 

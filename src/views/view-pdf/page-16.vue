@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'感染型腹泻',nameEn:'Infectious diarrhea'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :is-multiply="true" :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 感染型腹泻(Infective diarrhea)是由细菌、病毒或寄生虫等微生物感染引起的一种消化系统疾病。感染性腹泻（也称急性胃肠炎）系指各种病原体肠道感染而引起的腹泻。根据腹泻的持续时间长短，可将其分为急性（小于14天），持续性（14～29天）或慢性（≥30天）。病原体主要包括细菌、病毒、寄生虫和真菌等。其染病途径主要通过口部进入。发病机制为毒素和（或）病原体直接侵犯胃肠道黏膜而致病。
@@ -60,22 +60,41 @@ export default {
 
 
             ],
-            list:[{   name:'感染型腹泻',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '感染型腹泻')
+                console.log(this.list,'1121211212')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
 
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'感染型腹泻'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'感染型腹泻',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+
+    },
+
 }
 </script>
 

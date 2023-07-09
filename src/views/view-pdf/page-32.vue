@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'抑郁症',nameEn:'depression'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :isMultiply="true"   :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 抑郁症是一种常见的心理健康问题，也被称为临床抑郁症或抑郁性障碍。它是一种持续的心境障碍，导致患者感到持久的悲伤、消极、丧失兴趣或喜悦感的情绪。抑郁症不仅会影响情绪，还可能对患者的思维、行为、身体健康和社交功能产生负面影响。
@@ -58,26 +58,38 @@ export default {
 
 
             tableList:[
-                {name: " 罗氏菌属 Roseburia",value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'芽孢杆菌属 Bacillus',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'粪球菌属 Coprococcus',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'粪杆菌属 Faecalibacterium',value:'59.545%',value2:0.1914-14.598,state: 2},
             ],
-            list:[{   name:'抑郁症',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '抑郁症')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'抑郁症'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'抑郁症',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+    },
 }
 </script>
 

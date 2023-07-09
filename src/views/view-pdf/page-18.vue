@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'胃病',nameEn:'gastropathy'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 胃病，实际上是许多病的统称。它们有相似的症状。临床上常见的胃病有急性胃炎、慢性胃炎、 胃溃疡、十二指肠溃疡、胃十二指肠复合溃疡、胃息肉、胃结石、胃的良 恶性肿瘤，还有胃粘膜脱垂症、急性胃扩张、幽门梗阻等
@@ -59,28 +59,36 @@ export default {
 
         return {
             tableList:[
-                {name: "   罗氏菌属 Roseburia",value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'芽孢杆菌属 Bacillus',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'幽门螺旋杆菌',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'嗜胆菌属 Bilophila',value:'59.545%',value2:0.1914-14.598,state: 2},
-
-
             ],
-            list:[{   name:'胃病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '胃病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
 
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'胃病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'胃病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
-
     }
 }
 </script>

@@ -1,10 +1,9 @@
 <template>
     <div>
         <div class="car-box">
-
             <header-tow :data="{name:'心脑血管疾病',nameEn:'Cardiovascular and cerebrovascular diseases'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 心脑血管疾病（Cardiovascular Diseases，简称CVDs）是指影响心脏和血管系统的疾病，包括心脏病、高血压、中风、冠心病等。心脑血管疾病的发病原因多种多样，包括高血压、高血脂、吸烟、肥胖、缺乏运动、糖尿病、遗传因素和不良生活习惯等。
@@ -69,21 +68,37 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'感染型腹泻',
-                num:50,
-                type:1}]
+            list:[  ]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '心脑血管疾病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'心脑血管疾病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'心脑血管疾病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
-        })
 
-    }
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
+        })
+    },
+
 }
 </script>
 

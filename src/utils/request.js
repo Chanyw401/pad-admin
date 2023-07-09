@@ -51,7 +51,7 @@ service.interceptors.response.use(
       if (!response.config.noTip) {
         tool.msg({
           type: "error",
-          message: response.data.message
+          message: response.data.msage
         });
       }
       return Promise.reject(response.data);

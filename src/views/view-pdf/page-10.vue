@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'结直肠癌',nameEn:'Colorectal cancer'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true" :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 结直肠癌(colorectal cancer, CRC)是一种常见的致命疾病，环境和遗传因素均可能影响其发生风险。近些年，结直肠癌的患者有年轻化趋势，绝大部分患者是结肠黏膜长了息肉、腺瘤，经过长时间、多步骤、序惯性基因突变而发生癌变。大多数患者的表现是粪便中或粪便上有血；大便习惯改变、大便变细；有腹泻或便秘症状，有时二者会交替出现；腹部绞痛，伴有呕吐，大便排出后，疼痛会有缓解；体重无缘无故减轻；持续的疲劳感
@@ -58,6 +58,22 @@ import ProductionBeat from "components/common/production-beat.vue";
 export default {
     components: {ProductionBeat, FooterBox, HeaderTow},
     name:'page10',
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '结直肠癌')
+                console.log(this.list,'1121211212')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     data() {
         return {
             tableList:[
@@ -68,20 +84,29 @@ export default {
 
 
             ],
-            list:[{   name:'结直肠癌',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'结直肠癌'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'结直肠癌',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
+
         })
+    },
+
+    mounted() {
+
+        // this.$EventBus.$on('listInfo',res=>{
+        //     this.list = res.filter(e=>e.name == '结直肠癌')
+        // })
     }
+
 }
 </script>
 

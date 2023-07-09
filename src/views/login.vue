@@ -24,7 +24,7 @@
               src="@/assets/img/login_form_logo.svg"
             />
           </div>
-          <div class="login-info">{{ systemTitle }}</div>
+          <div class="login-info">a16S rRNA基因测序系统</div>
           <el-form-item
             :class="[
           loginBox.error.loginStr ? 'error' : '',
@@ -135,10 +135,9 @@ export default {
           this.$store.dispatch('user/login', { data: this.loginBox.data, option: { noTip: true } }).then(res => {
             this.$tool.setToken(res);
             this.$router.push({
-              path: this.redirect || '/index'
+              path: '/user-manage'
             });
           }).catch((res) => {
-              console.log(res,'res')
             if (res.code == 402) {
               this.authorizeShow = true;
             } else {

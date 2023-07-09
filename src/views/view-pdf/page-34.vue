@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'自闭症',nameEn:'autism'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 自闭症是一种神经发育障碍，它会影响人们的社交能力、语言交流、感知和行为，通常在早期儿童时期被诊断出来。根据美国疾病控制与预防中心（CDC）的数据，自闭症在美国儿童中的患病率为1/54，这意味着约有2000万人口患有自闭症。
@@ -60,22 +60,38 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'自闭症',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
 
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '自闭症')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'自闭症'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'自闭症',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'34')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+    },
 }
 </script>
 

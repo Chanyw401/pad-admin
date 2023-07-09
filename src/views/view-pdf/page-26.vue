@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'II型糖尿病',nameEn:'Type 2 diabetes'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 糖尿病由多种病因引起的以慢性高血糖为特征的代谢紊乱，主要病征为"三多一少"，即多饮、多食、多尿、体重减轻。II型糖尿病:是体内产生胰岛素的能力并非完全丧失但是胰岛素的作用效果较差，体内的胰岛素出现相对缺乏，35~40岁之后发病，占糖尿病患者90%以上。
@@ -59,28 +59,39 @@ export default {
 
         return {
             tableList:[
-                {name: "普雷沃氏菌属 Prevotella",value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'罗氏菌属 Roseburia',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'链球菌属 Streptococcus',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'毛螺菌属 Lachnospira',value:'59.545%',value2:0.1914-14.598,state: 2},
-
-
             ],
-            list:[{   name:'II型糖尿病\n',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == 'II型糖尿病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'II型糖尿病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'II型糖尿病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'222')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+    },
+
 }
 </script>
 

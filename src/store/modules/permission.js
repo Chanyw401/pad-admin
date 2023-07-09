@@ -1,4 +1,4 @@
-import axios from "@/utils/request.js";
+// import axios from "@/utils/request.js";
 import { constantRoutes, indexRouter, roleRouter, menuRouter } from "@/router"
 
 let menuIcon;
@@ -120,21 +120,57 @@ const actions = {
     return new Promise(resolve => {
       let roleRoutes = filterRoleRoute(roleRouter || [], userInfo.userType, userInfo.roleList);
       let indexRoute = filterRoleRoute(indexRouter, userInfo.userType, userInfo.roleList);
-      axios.post('/admin/menu/nav').then(res => {
-        // res = JSON.parse('{"menus":[{"id":11,"pid":0,"name":"首页","url":"index","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":11,"pid":0,"name":"项目管理","url":"project-manage","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":12,"pid":0,"name":"用户管理","url":"users","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":12,"pid":0,"name":"菜单管理","url":"menu-manage","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":112,"pid":0,"name":"主菜单","url":"","perms":null,"type":0,"icon":null,"child":[{"id":113,"pid":112,"name":"页面1","url":"page1","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":122,"pid":0,"name":"页面2","url":"page2","perms":null,"type":0,"icon":null,"child":[],"orderNum":null}],"orderNum":null}]}');
-        // res.menus = [];
-        if (!res.menus.length || res.menus[0].name != '首页') {
-          res.menus.splice(0, 0, {
-            "id": 11, "pid": 0, "name": "首页", "url": "index", "perms": null, "type": 0, "icon": null, "child": [], "orderNum": null
-          });
-        }
-        menuIcon = getIcon(menuRouter.concat(indexRouter));
-        commit('SETMENU', dealMenu(res.menus, true));
-        let menuRoutes = getMenuRoute(menuRouter);
-        let routes = indexRoute.concat(menuRoutes.concat(roleRoutes));
-        commit('SETROUTES', routes);
-        resolve(routes);
-      });
+      const res = {
+        menus:[
+          // {
+          //   "id": 11, "pid": 0, "name": "首页", "url": "index", "perms": null, "type": 0, "icon": null, "child": [], "orderNum": null
+          // },
+          {
+            "id": 269,
+            "pid": 267,
+            "name": "用户管理",
+            "url": "user-manage",
+            "perms": null,
+            "type": 1,
+            "icon": "",
+            "child": [],
+            "orderNum": null
+          },
+          {
+            "id": 277,
+            "pid": 288,
+            "name": "报告管理",
+            "url": "report-manage",
+            "perms": null,
+            "type": 1,
+            "icon": "",
+            "child": [],
+            "orderNum": null
+          }
+
+        ]
+      };
+      menuIcon = getIcon(menuRouter.concat(indexRouter));
+      commit('SETMENU', dealMenu(res.menus, true));
+      let menuRoutes = getMenuRoute(menuRouter);
+      let routes = indexRoute.concat(menuRoutes.concat(roleRoutes));
+      commit('SETROUTES', routes);
+      resolve(routes);
+      // axios.post('/admin/menu/nav').then(res => {
+      //   // res = JSON.parse('{"menus":[{"id":11,"pid":0,"name":"首页","url":"index","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":11,"pid":0,"name":"项目管理","url":"project-manage","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":12,"pid":0,"name":"用户管理","url":"users","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":12,"pid":0,"name":"菜单管理","url":"menu-manage","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":112,"pid":0,"name":"主菜单","url":"","perms":null,"type":0,"icon":null,"child":[{"id":113,"pid":112,"name":"页面1","url":"page1","perms":null,"type":0,"icon":null,"child":[],"orderNum":null},{"id":122,"pid":0,"name":"页面2","url":"page2","perms":null,"type":0,"icon":null,"child":[],"orderNum":null}],"orderNum":null}]}');
+      //   // res.menus = [];
+      //   if (!res.menus.length || res.menus[0].name != '首页') {
+      //     res.menus.splice(0, 0, {
+      //       "id": 11, "pid": 0, "name": "首页", "url": "index", "perms": null, "type": 0, "icon": null, "child": [], "orderNum": null
+      //     });
+      //   }
+      //   menuIcon = getIcon(menuRouter.concat(indexRouter));
+      //   commit('SETMENU', dealMenu(res.menus, true));
+      //   let menuRoutes = getMenuRoute(menuRouter);
+      //   let routes = indexRoute.concat(menuRoutes.concat(roleRoutes));
+      //   commit('SETROUTES', routes);
+      //   resolve(routes);
+      // });
     });
   }
 }

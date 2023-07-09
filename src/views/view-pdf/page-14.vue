@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'肠易激综合征',nameEn:'Irritable bowel syndrome'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :is-multiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 肠易激综合征（Irritable Bowel Syndrome，IBS）是一种功能性肠道紊乱，其特征是腹痛或腹部不适、腹胀、排便习惯改变（如腹泻、便秘或交替出现）以及与粪便排泄相关的不适感。IBS是一种常见的肠道问题，尽管它不会引起肠道结构上的变化或损害，但它会影响肠道的正常功能，对患者的日常生活造成影响和困扰。
@@ -63,21 +63,44 @@ export default {
 
 
             ],
-            list:[{   name:'肠易激综合征',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
-    },created() {
+    },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '肠易激综合征')
+                console.log( this.list,' this.list')
+            },
+            deep: true
+        }
+    },
+    created() {
 
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肠易激综合征'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肠易激综合征',   sampleid:this.$route.query.sampleid}).then(res=>{
+            console.log(res,'111')
             this.tableList = res
-            console.log(res,'2222')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+    },
+    // mounted() {
+    //     this.$EventBus.$on('listInfo',res=>{
+    //         this.list = res.filter(e=>e.name == '肠易激综合征')
+    //     })
+    // }
 }
 </script>
 

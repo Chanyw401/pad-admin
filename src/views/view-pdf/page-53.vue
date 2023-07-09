@@ -54,7 +54,7 @@ export default {
     methods:{
         getData(){
             this.$axios.post('/admin/report/bacter-details',{
-                sampleid:'596908438',
+                sampleid:this.$route.query.sampleid,
                 level:'种'
             }).then(res=>{
                 //this.tableList  res前十六个数据

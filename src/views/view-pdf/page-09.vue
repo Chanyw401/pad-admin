@@ -17,8 +17,11 @@
                             <div>{{ item.name }}</div>
                         </div>
                         <div class="tody_item" v-for="(e,indez) in 16" :key="e">
-                            <div class="state-item" :class="statelist[index][indez]==2?'active':statelist[index][indez] ==1?'error':'' ">
-                                {{ statelist[index][indez]==2  ? '+' : statelist[index][indez] ==1 ? '-' : '' }}
+                            <div class="state-item"
+                                 :class="statelist[index][indez]==2?'active':statelist[index][indez] ==1?'error':'' "
+                            >
+                                <img v-if="statelist[index][indez] == 2" style="width: 18px" src="../../assets/img/car-pdf/rise.svg" alt="">
+                                <img v-if="statelist[index][indez] == 1" style="width: 18px" src="../../assets/img/car-pdf/dwon.svg" alt="">
                             </div>
                         </div>
 
@@ -181,9 +184,6 @@ export default {
     .error {
       width: 18px;
       height: 18px;
-      border-radius: 4px;
-      background: #254A96;
-      color: #ffffff;
       line-height: 18px;
       opacity: 1;
       font-size: 14px;
@@ -191,12 +191,7 @@ export default {
 
     }
 
-    .active {
-      background: #CA3E54;
-    }
-    .error{
-      line-height: 14px;
-    }
+
   }
 
 

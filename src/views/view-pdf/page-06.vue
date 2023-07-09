@@ -92,7 +92,7 @@ export default {
   },
     created() {
         this.$axios.post('/admin/report/anti', {
-            sampleid: '596908438'
+            sampleid: this.$route.query.sampleid
         }).then(res => {
             let list =[]
             res.resultVos.map(i => {

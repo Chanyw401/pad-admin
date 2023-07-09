@@ -44,7 +44,7 @@ export default {
     methods:{
       getData(){
         this.$axios.post('/admin/report/nutrition-zy',{
-          sampleid:'596908438',
+          sampleid:this.$route.query.sampleid,
         }).then(res=>{
             let list =[]
             res.resultVos.map(i => {
@@ -74,7 +74,7 @@ export default {
 
         })
           this.$axios.post('/admin/report/nutrition-ws',{
-              sampleid:'596908438',
+              sampleid:this.$route.query.sampleid,
           }).then(res=>{
               console.log(res,54)
               let list =[]

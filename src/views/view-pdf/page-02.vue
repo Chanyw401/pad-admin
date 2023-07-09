@@ -27,31 +27,31 @@
                 <div class="li-item">
                     <div class="number-btn">1</div>
                     <div class="li-content">
-                        肠道菌群多样性稳定、有益菌丰度偏低、条件致病菌、有害菌丰度偏高；
+                        {{t1}}
                     </div>
                 </div>
                 <div class="li-item">
                     <div class="number-btn">2</div>
                     <div class="li-content">
-                        肠道致病菌的检测：显示弯曲菌属检测异常。
+                        {{t2}}
                     </div>
                 </div>
                 <div class="li-item">
                     <div class="number-btn">3</div>
                     <div class="li-content">
-                        风险疾病注意事项：炎症性肠炎、甲状腺疾病、抑郁症。
+                        {{t3}}
                     </div>
                 </div>
                 <div class="li-item">
                     <div class="number-btn">4</div>
                     <div class="li-content">
-                        短链脂肪酸合成偏少，肠道菌群血清素水平25分，属于正常范围，更高的分值显示更好的睡眠质量以及更多的幸福感和愉悦。
+                        {{t4}}
                     </div>
                 </div>
                 <div class="li-item">
                     <div class="number-btn">5</div>
                     <div class="li-content">
-                        发育及营养部分，主要营养成分摄入乳制品偏少/正常。维生素部分检测显示异常。微量元素显示正常。耐药性显示正常。
+                        {{t5}}
                     </div>
                 </div>
 
@@ -74,27 +74,39 @@ export default {
     name: 'page0',
     data() {
         return {
-            userInfo:{},
-            tableList: [
-                {name: '厚壁菌门 Firmicutes', value: '59.545%', value2: 15},
-                {name: '拟杆菌门 Bacteroidetes', value: '59.545%', value2: 35},
-                {name: '变形菌门 Proteobacteria', value: '59.545%', value2: 45},
-                {name: '放线菌门 Actinobacteria', value: '59.545%', value2: 55},
-                {name: '螺旋体 Spirochaetes', value: '59.545%', value2: 100},
-            ]
+            userInfo:{
+
+            },
+            t1:'',
+            t2:'',
+            t3:'',
+            t4:'',
+            t5:'',
+
 
 
         }
     },
     created() {
+    },
+    mounted() {
         this.getData()
+
     },
     methods: {
     getData(){
         this.$axios.post('/admin/report/report-total',{
-            sampleid:'596908438'
+            sampleid:this.$route.query.sampleid
         }).then(res=>{
+
             this.userInfo = res.sampleinfoVo
+            this.t1 = res.t1
+            this.t2 = res.t1
+            this.t3 = res.t3
+            this.t4 = res.t4
+            this.t5 = res.t5
+
+            this.$EventBus.$emit('userInfo',this.userInfo)
 
         })
     }

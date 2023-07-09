@@ -169,7 +169,7 @@ export default {
     methods: {
         getData(){
             this.$axios.post('/admin/report/report-total-two',{
-                sampleid:'596908438'
+                sampleid:this.$route.query.sampleid
             }).then(res=>{
                 console.log({res})
                 this.dataInfo = res

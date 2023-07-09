@@ -101,7 +101,7 @@ export default {
     methods: {
         getData(){
             this.$axios.post('/admin/report/nutrition-dlzf', {
-                sampleid: '596908438'
+                sampleid: this.$route.query.sampleid
             }).then(res => {
 
                 let list =[]
@@ -130,7 +130,7 @@ export default {
                 this.listInfo = list
             })
             this.$axios.post('/admin/report/metabolism', {
-                sampleid: '596908438'
+                sampleid: this.$route.query.sampleid
             }).then(res => {
 
                 let list =[]
@@ -159,7 +159,7 @@ export default {
                 this.listInfo2 = list
             })
             this.$axios.post('/admin/report/pathogen', {
-                sampleid: '596908438'
+                sampleid: this.$route.query.sampleid
             }).then(res => {
 
                 let list =[]

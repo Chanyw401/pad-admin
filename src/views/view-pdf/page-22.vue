@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'肝病',nameEn:'Liver disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 常见肝病包括脂肪肝、病毒性肝炎、肝硬化、肝癌和肝囊肿。脂肪肝是脂肪在肝脏异常积聚，肝炎是病毒感染引起的肝脏炎症，肝硬化是慢性肝脏病变导致组织疤痕化，肝癌是恶性肿瘤形成于肝脏，肝囊肿是液体囊肿形成在肝脏内。
@@ -57,22 +57,37 @@ export default {
         return {
             tableList:[
             ],
-            list:[{   name:'肝病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '肝病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
 
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肝病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肝病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'999')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
+    },
 
-    }
 }
 </script>
 

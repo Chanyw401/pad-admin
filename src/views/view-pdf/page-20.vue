@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'胆病',nameEn:'Gallbladder disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 胆病是指影响胆囊、胆管或胆汁的疾病，它们与胆汁的合成、储存和分泌有关。胆汁是由肝脏产生并经过胆管系统排出到小肠中，帮助消化和吸收脂肪。包括胆囊炎、胆管结石、胆管炎、胆道恶性肿瘤等。常见症状有右上腹痛、恶心、呕吐、发热、黄疸等。
@@ -62,28 +62,41 @@ export default {
 
         return {
             tableList:[
-                {name: "罗氏菌属 Roseburia",value:'59.545%',value2:'0.1914-14.598',state:1},
-                {name:'粪杆菌属 Faecalibacterium',value:'59.545%',value2:'0.1914-14.598',state:0},
-                {name:'芽孢杆菌属 Bacillus',value:'59.545%',value2:0.1914-14.598,state: 2},
-                {name:'颤螺菌属 Oscillospira',value:'59.545%',value2:0.1914-14.598,state: 2},
-
-
             ],
-            list:[{   name:'胆病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
-    },created() {
+    },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '胆病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
+    created() {
 
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'胆病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'胆病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
 
-    }
+
+
+    },
+
 }
 </script>
 

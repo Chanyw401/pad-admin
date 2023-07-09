@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'肺部疾病',nameEn:'Pulmonary disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat :isMultiply="true"   :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 肺部疾病是指影响人体肺部结构和功能的各种疾病。包括慢性阻塞性肺疾病（COPD）、支气管哮喘、肺炎、肺结石、肺癌等。肺部还可能受到肺血栓栓塞症、肺动脉高压、肺纤维化、间质性肺病等其他疾病的影响。
@@ -56,21 +56,37 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'肺部疾病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '肺部疾病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肺部疾病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'肺部疾病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
-        })
 
-    }
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
+        })
+    },
+
 }
 </script>
 

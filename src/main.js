@@ -32,5 +32,9 @@ Vue.prototype.$axios = axios;
 new Vue({
   router,
   store,
+  beforeCreate() {
+    //安装事件总线
+    Vue.prototype.$EventBus = this;
+  },
   render: h => h(App)
 }).$mount("#app");

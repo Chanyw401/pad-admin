@@ -57,7 +57,7 @@ export default {
         },
         getData(){
             this.$axios.post('/admin/report/bacter-details',{
-                sampleid:'596908438',
+                sampleid:this.$route.query.sampleid,
                 level:'目'
             }).then(res=>{
                 this.tableList = []

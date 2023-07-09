@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'自体免疫疾病',nameEn:'Autoimmune disease'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 自体免疫病指主要侵犯关节、肌肉、骨骼及关节周围的软组织，如肌腱、韧带、滑囊、筋膜等部位的疾病。自体免疫病是一类由免疫系统异常攻击身体自身组织和器官的疾病。通常情况下，免疫系统的功能是识别和攻击入侵的病原体，以保护身体免受感染。然而，在自体免疫病中，免疫系统错误地将身体自身的组织和器官视为外来物质，因此发起攻击。
@@ -55,19 +55,36 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'自体免疫疾病',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '自体免疫疾病')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'自体免疫疾病'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'自体免疫疾病',   sampleid:this.$route.query.sampleid}).then(res=>{
             this.tableList = res
-            console.log(res,'111')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
+
         })
+
 
     }
 }

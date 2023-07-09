@@ -3,6 +3,7 @@ import store from '@/store'
 
 
 router.beforeEach(async (to, from, next) => {
+    console.log(to,'to')
 if (to.path == '/login') {
         next();
     } else {
@@ -17,9 +18,9 @@ if (to.path == '/login') {
                     store.dispatch('user/getUserInfo').then(async userInfo => {
                         const asyncRoutes = await store.dispatch('permission/generateRoutes', userInfo)
                         router.addRoutes(asyncRoutes)
+                        console.log(to,'to')
                         next({ ...to, replace: true })
                     }).catch(() => {
-
                             next(`/login?redirect=${to.path}`);
 
                     });

@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="car-box">
-            <header-one :data="{name:'您的肠道菌群构造',nameEn:'Your gut microbiota structure',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}" />
+            <header-one
+                    :data="{name:'您的肠道菌群构造',nameEn:'Your gut microbiota structure',No:'NO：BG202304172012',date:'报告生成：2023-04-17'}"/>
             <div class="content-box">
                 <div class="content-header">门（DOOR）</div>
                 <div class="content">
@@ -26,29 +27,31 @@
                     </div>
                 </div>
             </div>
-            <header-tow :data="{name:'检测结果',nameEn:'DETECTION RESULT'}" />
+            <header-tow :data="{name:'检测结果',nameEn:'DETECTION RESULT'}"/>
             <div class="content2-box">
                 <div class="left">
-                    <PieContainerChart :dataList="[20,30]"/>
+                    <PieContainerChart :dataList="list"/>
                 </div>
                 <div class="right">
                     <img src="../../assets/img/bacteria-bg.png" class="bacteria-bg" alt="">
                     <img src="../../assets/img/bacteria-text-bg.png" class="bacteria-text-bg" alt="">
                     <div class="right-content">
                         <div class="right-header">您的主要菌群构成</div>
-                        <div class="li-content" >
-                            <div>
-                                <span class="point point-red" ></span > <span class="name">厚壁菌门</span> <span class="btn">59.6%</span>
+                        <div class="li-content">
+                            <div v-for="(item,index) in tableList" :key="index">
+                                <span class="point point-red" :class="'point-'+ (index+1)"></span> <span
+                                    class="name">{{ item.name.split(' ')[0] }}</span> <span :class="'btn-'+ (index+1)"
+                                                                                            class="btn ">{{ toFixed(item.value) }}%</span>
                             </div>
-                            <div>
-                                <span class="point point-2"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-2">59.6%</span>
-                            </div>
-                            <div>
-                                <span class="point point-3"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>
-                            </div>
-                            <div>
-                                <span class="point point-4"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>
-                            </div>
+                            <!--                            <div>-->
+                            <!--                                <span class="point point-2"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-2">59.6%</span>-->
+                            <!--                            </div>-->
+                            <!--                            <div>-->
+                            <!--                                <span class="point point-3"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>-->
+                            <!--                            </div>-->
+                            <!--                            <div>-->
+                            <!--                                <span class="point point-4"></span> <span  class="name">厚壁菌门</span> <span class="btn btn-3">59.6%</span>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -63,21 +66,18 @@
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
-                        <div style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
-                        <div style="width: 20%;text-align: center ">{{toFixed(item.value)}}%</div>
+                        <div style="width: 40%;text-align: left;padding-left: 10px">{{ item.name }}</div>
+                        <div style="width: 20%;text-align: center ">{{ toFixed(item.value) }}%</div>
                         <div style="width: 40%;text-align:center;    padding-top: 9px;padding-right: 25px;">
-                            <el-progress :percentage="Number(item.percent)" :stroke-width="8" color="#2E5CBB"></el-progress>
+                            <el-progress :percentage="Number(item.percent)" :stroke-width="8"
+                                         color="#2E5CBB"></el-progress>
                         </div>
-                        <div style="width: 20%;text-align: center">{{item.population}}
+                        <div style="width: 20%;text-align: center">{{ item.population }}
                         </div>
                     </div>
                 </div>
 
             </div>
-
-
-
-
 
 
             <footer-box :data="'48'"/>
@@ -95,13 +95,64 @@ import FooterBox from "@/components/pdf-common/footer-box.vue";
 import PieContainerChart from "@/components/Echart/pieContainerChart.vue";
 
 export default {
-    components: { FooterBox, HeaderOne, HeaderTow,PieContainerChart},
-    name:'page48',
+    components: {FooterBox, HeaderOne, HeaderTow, PieContainerChart},
+    name: 'page48',
     data() {
         return {
-            tableList:[
-            ]
-
+            tableList: [],
+            colorList: ['#CA3E54', '#475276', '#8989A3', '#2E5CBB', '#E1E4EA'],
+            list: [{
+                "name": "拟杆菌门",
+                "value": 50,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: 1,
+                    // 扇形颜色
+                    color: '#CA3E54',
+                }
+            }, {
+                "name": "厚壁菌门",
+                "value": 30,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: 1,
+                    // 扇形颜色
+                    color: '#475276',
+                }
+            }, {
+                "name": "变形菌门",
+                "value": 15,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: 1,
+                    // 扇形颜色
+                    color: '#8989A3',
+                }
+            }, {
+                "name": "梭杆菌门",
+                "value": 5,
+                "number": 100,
+                itemStyle: {
+                    // 透明度
+                    opacity: 1,
+                    // 扇形颜色
+                    color: '#ACACC1',
+                }
+            },
+                {
+                    "name": "放线菌门",
+                    "value": 5,
+                    "number": 100,
+                    itemStyle: {
+                        // 透明度
+                        opacity: 1,
+                        // 扇形颜色
+                        color: '#ACACC1',
+                    }
+                }]
 
 
         }
@@ -109,17 +160,34 @@ export default {
     mounted() {
         this.getData()
     },
-    methods:{
-        getData(){
-            this.$axios.post('/admin/report/bacter-details',{
-                sampleid:'596908438',
-                level:'门'
-            }).then(res=>{
+    methods: {
+        getData() {
+            this.$axios.post('/admin/report/bacter-details', {
+                sampleid: this.$route.query.sampleid,
+                level: '门'
+            }).then(res => {
                 this.tableList = res
-                console.log(res,48)
+                console.log(res, 48)
+                let list = []
+                this.tableList.map((i, index) => {
+                    list.push(
+                        {
+                            "name": i.name,
+                            "value": Number(i.value),
+                            "number": 100,
+                            itemStyle: {
+                                // 透明度
+                                opacity: .8,
+                                // 扇形颜色
+                                color: this.colorList[index] || '#ACACC1',
+                            }
+                        }
+                    )
+                })
+                this.list = list
             })
         },
-        toFixed(num){
+        toFixed(num) {
             return Number(num).toFixed(3)
         },
     }
@@ -127,7 +195,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.theader{
+.theader {
   width: 100%;
   display: flex;
   color: #ffffff;
@@ -137,10 +205,11 @@ export default {
   background-size: cover;
   border-radius: 4px;
 }
-.t-body{
+
+.t-body {
   width: 100%;
 
-  .item{
+  .item {
     display: flex;
     align-content: center;
     width: 100%;
@@ -150,10 +219,12 @@ export default {
     background: #e1e4ea;
     margin: 10px 0;
     border-radius: 4px;
-    div{
+
+    div {
     }
   }
-  .item:nth-child(2n){
+
+  .item:nth-child(2n) {
     background: rgba(37, 74, 150, .2);
   }
 
@@ -162,31 +233,37 @@ export default {
     font-size: 11px !important;
   }
 }
-.content-box{
+
+.content-box {
   height: 200px;
   margin-bottom: 30px;
-  .content-header{
+
+  .content-header {
     color: #1A356B;
     padding-bottom: 10px;
 
   }
-  .content{
+
+  .content {
     height: 157px;
-    background: linear-gradient(180deg, #EAECED 0%, rgba(234,236,237,0) 100%);
+    background: linear-gradient(180deg, #EAECED 0%, rgba(234, 236, 237, 0) 100%);
     border-radius: 6px 6px 6px 6px;
     padding: 20px;
-    .content-item{
+
+    .content-item {
       height: 14px;
       font-size: 14px;
       color: #667995;
-      margin-bottom: 10px ;
+      margin-bottom: 10px;
     }
-    .content-item2{
+
+    .content-item2 {
       display: flex;
       height: 100px;
       align-items: center;
       justify-content: space-around;
-      .item-btn{
+
+      .item-btn {
         box-sizing: border-box;
         width: 163px;
         height: 64px;
@@ -198,7 +275,8 @@ export default {
 
       }
     }
-    .content-foorter{
+
+    .content-foorter {
       display: flex;
       justify-content: flex-end;
       color: #667995;
@@ -208,99 +286,125 @@ export default {
   }
 
 }
-.content2-box{
+
+.content2-box {
   display: flex;
   width: 100%;
   height: 280px;
   align-items: center;
-  .left{
+
+  .left {
     width: 50%;
     height: 100%;
     border-radius: 6px 0 0 6px;
   }
-  .right{
+
+  .right {
     position: relative;
     width: 50%;
     height: 100%;
     //background: #e1e4ea;
     border-radius: 0 6px 6px 0;
-    .right-content{
-        padding-top: 40px;
-        padding-right: 40px;
+
+    .right-content {
+      padding-top: 40px;
+      padding-right: 40px;
       text-align: right;
-        .li-content{
-            div{
-                height: 30px;
-                line-height: 30px;
-            }
-        }
-        .point{
-          width: 10px;
-          height: 10px;
-          background: #2E5CBB;
-          border-radius: 50%;
-          display: inline-block;
-          margin-right: 3px;
-        }
-        .point-red{
-            background: #CA3E54;
-        }
-        .point-2{
-            background: #475276;
-        }
-        .point-3{
-            background: #8989A3;
-        }
-        .point-4{
-            background: #ACACC1;
-        }
-        .name {
-            padding: 0 2px;
-        }
-        .btn{
-         width: 100px;
+
+      .li-content {
+        div {
           height: 30px;
-            padding: 4px 8px;
-          background: rgba(202, 62, 84, .1);
-          border-radius: 4px;
-          color: rgba(202, 62, 84, 1);
-          margin-top: 20px;
-          margin-bottom: 20px;
+          line-height: 30px;
         }
-        .btn-2{
-            background: rgba(71, 82, 118, .1);
-            color: rgba(71, 82, 118, 1);
-        }
-        .btn-3{
-            background: rgba(137, 137, 163, .1);
-            color: rgba(137, 137, 163, 1);
-        }
-        .btn-4{
-            background: rgba(172, 172, 193, .1);
-            color: rgba(172, 172, 193, 1);
-        }
+      }
+
+      .point {
+        width: 10px;
+        height: 10px;
+        background: #2E5CBB;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 3px;
+      }
+
+      .point-red {
+        background: #CA3E54;
+      }
+
+      .point-2 {
+        background: #475276;
+      }
+
+      .point-3 {
+        background: #8989A3;
+      }
+
+      .point-4 {
+        background: #ACACC1;
+      }
+
+      .point-5 {
+        background: #E1E4EA;
+      }
+
+      .name {
+        padding: 0 2px;
+        width: 68px;
+      }
+
+      .btn {
+        width: 81px;
+        height: 22px;
+        line-height: 22px;
+        text-align: center;
+        background: rgba(202, 62, 84, .1);
+        border-radius: 4px;
+        color: rgba(202, 62, 84, 1);
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+
+      .btn-2 {
+        background: rgba(71, 82, 118, .1);
+        color: rgba(71, 82, 118, 1);
+      }
+
+      .btn-3 {
+        background: rgba(137, 137, 163, .1);
+        color: rgba(137, 137, 163, 1);
+      }
+
+      .btn-4 {
+        background: rgba(172, 172, 193, .1);
+        color: rgba(172, 172, 193, 1);
+      }
+
+      .btn-5 {
+        background: rgba(172, 172, 193, .1);
+        color: rgba(172, 172, 193, 1);
+      }
     }
-    .bacteria-bg{
+
+    .bacteria-bg {
       position: absolute;
       top: 53px;
       left: 50px;
     }
-    .bacteria-text-bg{
+
+    .bacteria-text-bg {
       position: absolute;
       bottom: 50px;
       left: 50px;
     }
-    .right-header{
+
+    .right-header {
       color: #6F7F9F;
       font-size: 25px;
-        margin-bottom: 10px;
+      margin-bottom: 10px;
     }
 
   }
 }
-
-
-
 
 
 </style>

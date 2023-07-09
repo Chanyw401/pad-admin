@@ -30,42 +30,43 @@
                         {{ scope.row.userName ? scope.row.userName : "——" }}
                     </template>
                 </el-table-column>
-                <el-table-column
-                        label="账号类型"
-                        align="center"
-                >
-                    <template slot-scope="scope">
-                        {{ scope.row.userType == 1 ? '超级管理员' : '管理员' }}
-                    </template>
-                </el-table-column>
-                <el-table-column
-                        prop="status"
-                        label="账号状态"
-                        align="center"
-                >
-                    <template slot-scope="scope">
-                        {{ scope.row.status == 1 ? '启用' : "禁用" }}
-                    </template>
-                </el-table-column>
+<!--                <el-table-column-->
+<!--                        label="账号类型"-->
+<!--                        align="center"-->
+<!--                >-->
+<!--                    <template slot-scope="scope">-->
+<!--                        {{ scope.row.userType == 1 ? '超级管理员' : '管理员' }}-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+<!--                <el-table-column-->
+<!--                        prop="status"-->
+<!--                        label="账号状态"-->
+<!--                        align="center"-->
+<!--                >-->
+<!--                    <template slot-scope="scope">-->
+<!--                        {{ scope.row.status == 1 ? '启用' : "禁用" }}-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
                 <el-table-column width="160px" label="操作" align="center">
                     <template slot-scope="scope">
-                        <i v-if="scope.row.status == 0  && scope.row.userType != 1"
-                                class="btn-icon el-icon-turn-off"
-                                title="启用"
-                                @click="userStatus(scope.row.id,1)"
-                        ></i>
-                        <i v-if="scope.row.status == 1  && scope.row.userType != 1"
-                                class="btn-icon el-icon-open"
-                                title="禁用"
-                                @click="userStatus(scope.row.id,0)"
-                        ></i>
-                        <i v-if="scope.row.userType != 1"
-                            class="btn-icon el-icon-edit"
+<!--                        <i v-if="scope.row.status == 0  && scope.row.userType != 1"-->
+<!--                                class="btn-icon el-icon-turn-off"-->
+<!--                                title="启用"-->
+<!--                                @click="userStatus(scope.row.id,1)"-->
+<!--                        ></i>-->
+<!--                        <i v-if="scope.row.status == 1  && scope.row.userType != 1"-->
+<!--                                class="btn-icon el-icon-open"-->
+<!--                                title="禁用"-->
+<!--                                @click="userStatus(scope.row.id,0)"-->
+<!--                        ></i>-->
+
+                        <i
+                            class="btn-icon btn-icon-edit"
                                 title="编辑"
                                 @click="edit(scope.row)"
                         ></i>
-                        <i v-if="scope.row.userType != 1"
-                                class="btn-icon el-icon-delete"
+                        <i
+                                class="btn-icon btn-icon-delete"
                                 title="删除"
                                 @click="del([scope.row.id])"
                         ></i>
@@ -92,6 +93,14 @@
                     :rules="uploadBox.rules"
                     label-width="120px"
             >
+                <el-form-item label="账号名称：" prop="userName">
+                    <el-input
+                        v-model.trim="uploadBox.data.userName"
+                        placeholder="请输入"
+                        maxlength="100"
+                        show-word-limit
+                    ></el-input>
+                </el-form-item>
 
                 <el-form-item label="账号：" prop="loginName">
                     <el-input
@@ -101,28 +110,14 @@
                             show-word-limit
                     ></el-input>
                 </el-form-item>
-                <el-form-item label="账号密码：" >
+                <el-form-item label="账号密码：" prop="passWord" >
                     <el-input
-                            v-model.trim="uploadBox.data.loginPwd"
+                            v-model.trim="uploadBox.data.passWord"
                             placeholder="请输入"
                     ></el-input>
                 </el-form-item>
-                <el-form-item label="账号名称：" prop="userName">
-                    <el-input
-                            v-model.trim="uploadBox.data.userName"
-                            placeholder="请输入"
-                            maxlength="100"
-                            show-word-limit
-                    ></el-input>
-                </el-form-item>
-                <el-form-item label="账号类型：" prop="userType" v-if="uploadBox.data.userType != 1">
-                    <el-select
-                            v-model="uploadBox.data.userType"
-                            placeholder="请选择"
-                    >
-                        <el-option v-if="userType != 2" label="管理员" :value="2"></el-option>
-                    </el-select>
-                </el-form-item>
+
+
             </el-form>
             <div class="tx-center">
                 <el-button type="primary" @click="submitUpload">确定</el-button>
@@ -160,16 +155,15 @@ export default {
                 data: {
                     id: undefined,
                     loginName: "",
-                    loginPwd: "",
+                    passWord: "",
                     status: "1",
                     userName: "",
                     userType: ""
                 },
                 rules: {
                     loginName: [{required: true, message: "账号不能为空！", trigger: 'blur'}],
-                    loginPwd: [{required: true, message: "账号密码不能为空！", trigger: 'blur'}],
+                    passWord: [{required: true, message: "账号密码不能为空！", trigger: 'blur'}],
                     userName: [{required: true, message: "账号名称不能为空！", trigger: 'blur'}],
-                    userType: [{required: true, message: "账号类型不能为空！", trigger: 'change'}],
                 },
             },
             roleType: 0

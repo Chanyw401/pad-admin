@@ -55,8 +55,8 @@ export default {
     div {
       text-indent: 32px;
       text-align: justify;
-      font-size: 16px;
-      line-height: 26px;
+      font-size:24px;
+      line-height: 35px;
     }
 
 

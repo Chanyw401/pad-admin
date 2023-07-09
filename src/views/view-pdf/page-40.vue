@@ -4,7 +4,7 @@
 
             <header-tow :data="{name:'认知障碍（老年痴呆预兆）',nameEn:'Cognitive impairment (a sign of dementia)'}"/>
             <div class="header-point">检测结果 </div>
-            <production-beat  :data="list" />
+            <production-beat  :isMultiply="true"  :data="list" />
             <div class="header-point">疾病描述 </div>
             <div class="content-text">
                 认知障碍是指一类神经系统疾病或症状群，其主要特征是对认知能力的损害，包括思维、记忆、学习、注意力、理解和语言等方面。认知障碍通常包括轻度认知障碍、阿尔茨海默病、脑血管性认知障碍、前额叶痴呆。
@@ -22,7 +22,7 @@
                         <div style="width: 40%;text-align: left;padding-left: 10px">{{item.name}}</div>
                         <div style="width: 15%;text-align: center ">{{item.value}}</div>
                         <div style="width: 25%;text-align:center;">
-                            {{item.value2}}
+                            {{item.range}}
                         </div>
                         <div style="width: 20%;text-align: center ">
                             {{item.state == 0 ?'有益菌':'有害菌'}}
@@ -59,19 +59,36 @@ export default {
             tableList:[
 
             ],
-            list:[{   name:'认知障碍',
-                num:50,
-                type:1}]
+            list:[]
 
 
 
         }
     },
+    props: {
+        listInfo: {
+            type: Array,
+            default: () => []
+        }
+    },
+    watch: {
+        listInfo: {
+            handler(val) {
+                this.list = val.filter(e=>e.name == '认知障碍')
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     created() {
-        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'认知障碍（老年痴呆预兆）'}).then(res=>{
+        this.$axios.post('/admin/report/disease-bacterual',{diseaseName:'认知障碍（老年痴呆预兆）', sampleid:this.$route.query.sampleid}).then(res=>{
+            console.log(res,'40')
             this.tableList = res
-            console.log(res,'老年痴呆预兆')
+            this.tableList.map(i=>{
+                i.value = Number(i.value).toFixed(4)
+            })
         })
+
 
     }
 }

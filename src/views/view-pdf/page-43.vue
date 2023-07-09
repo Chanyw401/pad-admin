@@ -13,32 +13,40 @@
             <header-tow :data="{name:'核心菌属表',nameEn:'Core bacteria list'}"/>
             <div>
                 <div class="theader">
-                    <div style="width: 20%;text-align: left;padding-left: 10px">检测菌属</div>
-                    <div style="width: 10%;text-align: center ">丰度%</div>
+                    <div class="table-name" >检测菌属</div>
+                    <div style="width: 60px;text-align: center ">丰度%</div>
                     <div style="width: 10%;text-align: center "> 状态</div>
                     <div style="width: 15%;text-align:center">参考范围</div>
-                    <div style="width: 20%;text-align: left;padding-left: 10px">检测菌属</div>
+                    <div  class="table-name" >检测菌属</div>
                     <div style="width: 10%;text-align: center ">丰度%</div>
                     <div style="width: 10%;text-align: center "> 状态</div>
                     <div style="width: 15%;text-align:center">参考范围</div>
                 </div>
                 <div class="t-body">
                     <div v-for="(item,index) in tableList   " :key="index" class="item">
-                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name1}}</div>
-                        <div style="width: 10%;text-align: center ">{{toFixed3(item.value1)}}</div>
+                        <div class="table-name" style="width:120px;text-align: left;padding-left: 10px">
+                            {{ item.name1 }}
+                        </div>
+                        <div style="width: 60px;text-align: center ">{{ toFixed3(item.value1) }}</div>
                         <div style="width: 10%;text-align: center ">
-                            {{item.state1 == 0 ?'-': item.state1 ==1? '↓' : '↑'}}
+                            <div v-show="item.state1== 0"><img src="../../assets/img/car-pdf/down.png" alt=""></div>
+                            <div v-show="item.state1== 1">-</div>
+                            <div v-show="item.state1== 2"><img src="../../assets/img/car-pdf/rise.png" alt=""></div>
                         </div>
-                        <div style="width: 15%;text-align:center;">
-                            {{item.range1}}
+                        <div class="rand" style="width: 15%;text-align:center;">
+                            {{ item.range1 }}
                         </div>
-                        <div style="width: 20%;text-align: left;padding-left: 10px">{{item.name2}}</div>
-                        <div style="width: 10%;text-align: center ">{{toFixed3(item.value2)}}</div>
+                        <div class="table-name" style="width: 120px;text-align: left;padding-left: 10px">
+                            {{ item.name2 }}
+                        </div>
+                        <div style="width: 60px;text-align: center ">{{ toFixed3(item.value2) }}</div>
                         <div style="width: 10%;text-align: center ">
-                            {{item.state2 == 0 ?'-': item.state2 ==1? '↓' : '↑'}}
+                            <div v-show="item.state2=== 0"><img src="../../assets/img/car-pdf/down.png" alt=""></div>
+                            <div v-show="item.state2== 1">-</div>
+                            <div v-show="item.state2== 2"><img src="../../assets/img/car-pdf/rise.png" alt=""></div>
                         </div>
-                        <div style="width: 15%;text-align:center;">
-                            {{item.range2}}
+                        <div class="rand" style="width: 15%;text-align:center;">
+                            {{ item.range2 }}
                         </div>
                     </div>
                 </div>
@@ -64,45 +72,38 @@ export default {
     name: 'page43',
     data() {
         return {
-            tableList: [
-                {name: '厚壁菌门 Firmicutes', value: '59.545%', value2: 15},
-                {name: '拟杆菌门 Bacteroidetes', value: '59.545%', value2: 35},
-                {name: '变形菌门 Proteobacteria', value: '59.545%', value2: 45},
-                {name: '放线菌门 Actinobacteria', value: '59.545%', value2: 55},
-                {name: '螺旋体 Spirochaetes', value: '59.545%', value2: 100},
-                {name: '放线菌门 Actinobacteria', value: '59.545%', value2: 55},
-                {name: '螺旋体 Spirochaetes', value: '59.545%', value2: 100},
-            ]
+            tableList: []
 
 
         }
     },
     created() {
-    this.getData()
-        },
-    methods:{
-        getData(){
+        this.getData()
+    },
+    methods: {
+        getData() {
             this.$axios.post('/admin/report/abundance-all',
-                {sampleid:"596908438"}
+                {sampleid: this.$route.query.sampleid}
             ).then(
                 res => {
+                    console.log(res, '43')
                     this.tableList = []
                     //向上取整
-                    let middle = Math.ceil(res.b2.length/2)
-                    res.b2.map((item,index)=>{
-                        if(index<middle){
-                            this.tableList.push({
-                                name1:item.name,
-                                value1:item.value,
-                                range1:item.range,
-                                state1:item.type,
-                                name2:index+middle<res.b2.length?res.b2[index+middle].name:'',
-                                value2:index+middle<res.b2.length?res.b2[index+middle].value:'',
-                                range2:index+middle<res.b2.length?res.b2[index+middle].range:'',
-                                state2:index+middle<res.b2.length?res.b2[index+middle].type:'',
+                    let middle = Math.ceil(res.b2.length / 2)
+                    res.b2.map((item, index) => {
+                            if (index < middle) {
+                                this.tableList.push({
+                                    name1: item.name,
+                                    value1: item.value,
+                                    range1: item.range,
+                                    state1: item.status,
+                                    name2: index + middle < res.b2.length ? res.b2[index + middle].name : '',
+                                    value2: index + middle < res.b2.length ? res.b2[index + middle].value : '',
+                                    range2: index + middle < res.b2.length ? res.b2[index + middle].range : '',
+                                    state2: index + middle < res.b2.length ? res.b2[index + middle].status : '',
 
-                            })
-                        }
+                                })
+                            }
 
                         }
                     )
@@ -110,7 +111,7 @@ export default {
             )
         },
         toFixed3(num) {
-            return num !=''? Number(num).toFixed(3):0
+            return num !== '' ? Number(num).toFixed(3) : ''
         },
     }
 }
@@ -130,16 +131,17 @@ export default {
 
 .t-body {
   width: 100%;
+  font-size: 13px;
 
   .item {
     display: flex;
     align-content: center;
     width: 100%;
-    height: 55px;
+    height: 45px;
     align-items: center;
     color: #434F65;
     background: #e1e4ea;
-    margin: 15px 0;
+    margin: 8px 0;
     border-radius: 4px;
 
     div {
@@ -183,8 +185,6 @@ export default {
     text-align: justify;
 
 
-
-
   }
 
 }
@@ -217,6 +217,22 @@ export default {
     color: #353F51;
   }
 
+}
+
+.table-name {
+  width: 120px;
+  text-align: left;
+  padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+
+
+}
+.rand{
+    width: 100px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 

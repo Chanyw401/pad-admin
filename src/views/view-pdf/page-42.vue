@@ -548,9 +548,10 @@ export default {
     },
     mounted() {
         this.$axios.post('/admin/report/abundance', {
-            sampleid: '596908438'
+            sampleid: this.$route.query.sampleid
         }).then(
             res => {
+                console.log(res,'555555555555555555555')
                 let datalist = []
                 let linksData = res
                 linksData.map(i=>{
@@ -1030,10 +1031,12 @@ export default {
                                     {
                                         offset: 1,
                                         color: Color[d], // 0% 处的颜色
+                                        opacity: .5,
                                     },
                                     {
                                         offset: 0,
                                         color: Color1[d], // 100% 处的颜色
+                                        opacity: .5,
                                     },
                                 ],
                                 global: false, // 缺省为 false
@@ -1069,7 +1072,7 @@ export default {
                         top: "4%",
                         bottom: "12%",
                         left: "0",
-                        right: "0",
+                        right: "20%",
                         nodeGap: 15,
                         nodeWidth: 25,
                         focusNodeAdjacency: "allEdges",
@@ -1078,20 +1081,7 @@ export default {
                         label: {
                             normal: {
                                 color: "#1A356B",
-                                fontSize: 14,
-                                // formatter: function(params) {
-                                //     if (params.data.name == '公共平台') {
-                                //         let strs = params.data.name.split(''); //字符串数组
-                                //         let str = ''
-                                //         for (let i = 0, s; s = strs[i++];) { //遍历字符串数组
-                                //             str += s;
-                                //             if (!(i % 1)) str += '\n'; //按需要求余
-                                //         }
-                                //         return "{white|" + str + "}"
-                                //     } else {
-                                //         return params.data.name
-                                //     }
-                                // },
+                                fontSize: 10,
                                 rich: {
                                     white: {
                                         fontSize: 16,
